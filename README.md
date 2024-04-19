@@ -19,7 +19,6 @@ To get started with IdeaConnect, follow these steps:
 2. **Install Dependencies**: Install the necessary dependencies by running `npm install`.
 3. **Set Up Environment Variables**: Set up any required environment variables, such as API keys or database connection strings.
 4. **Run the Application**: Start the application by running `npm start`.
-5. **Explore and Contribute**: Explore the features of IdeaConnect and contribute to its development by submitting bug reports, feature requests, or pull requests.
 
 ## Technologies Used
 
@@ -28,17 +27,4 @@ To get started with IdeaConnect, follow these steps:
 - **Database**: MongoDB
 - **Authentication**: JSON Web Tokens (JWT)
 - **Version Control**: Git, GitHub
-
-
-## Contributing
-
-We welcome contributions from the community! If you have any ideas for improvements, bug fixes, or new features, feel free to open an issue or submit a pull request. Please adhere to the [code of conduct](CODE_OF_CONDUCT.md) when contributing to this project.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-For questions or inquiries, please contact [Vivek V Nair](viveknair6915@gmail.com).
 
