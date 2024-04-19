@@ -1,10 +1,23 @@
+import axios from "axios";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-function onClickHandler(e){
+
+export default function Signup() {
+const [username,setUsername] = useState("")
+const [email,setEmail] = useState("")
+const [password,setPassword] = useState("")
+async function onClickHandler(e:any){
     //handle on click
     e.preventDefault()
+    const response = await axios.post("http://localhost:3000/auth/register",
+    {username: username,
+    email: email,
+    password: password
+    }
+    )
+    console.log(response.data); // Assuming server returns some data
     //post request to server -> save in db
 }
-export default function Signup() {
     return (
         <div className="bg-cover bg-center h-screen flex flex-row" style={{backgroundImage: "url('signup.gif')"}}>
             <div className="w-1/2 h-full flex justify-center items-center flex-col">
@@ -35,7 +48,9 @@ export default function Signup() {
                     </svg>
                 </span>
 
-                <input type="text" className="border-gray-700 block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-bgPrimary dark:focus:border-bgPrimaryBg focus:ring-bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
+                <input onChange={(e)=>{
+                    setUsername(e.target.value)
+                }}   type="text" className="border-gray-700 block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-bgPrimary dark:focus:border-bgPrimaryBg focus:ring-bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
             </div>
 
             <label className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600">
@@ -55,7 +70,10 @@ export default function Signup() {
                     </svg>
                 </span>
 
-                <input type="email" className="block w-full py-3 border-gray-700  bg-white border rounded-lg px-11   focus:border-bgPrimaryBg dark:focus:border-bgPrimary focus:bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                <input onChange={(e)=>{
+                    setEmail(e.target.value)
+                    console.log("Email is: " + email)
+                }} type="email" className="block w-full py-3 border-gray-700  bg-white border rounded-lg px-11   focus:border-bgPrimaryBg dark:focus:border-bgPrimary focus:bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
             </div>
 
             <div className="relative flex items-center mt-4">
@@ -65,7 +83,10 @@ export default function Signup() {
                     </svg>
                 </span>
 
-                <input type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                <input onChange={(e)=>{
+                    setPassword(e.target.value)
+                    
+                }} type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
             </div>
 
             <div className="relative flex items-center mt-4">

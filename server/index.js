@@ -3,6 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
+const authRouter = require('./routes/auth.route')
+const connectDB = require('./database/database')
+
 
 const app = express();
 const port = 3000;
@@ -11,11 +14,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
+connectDB()
+
 const storeItems = new Map([
     [1, {priceInCents: 10000, name: "Weekly Subscription to unlimited ideas"}],
     [2, {priceInCents: 20000, name: "Monthly Subscription to unlimited ideas"}],
     [3, {priceInCents: 30000, name: "Annual Subscription to unlimited ideas"}]
 ]);
+
+app.use('/auth',authRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');

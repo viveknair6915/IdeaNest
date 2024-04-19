@@ -8,13 +8,12 @@ import Payments from './components/Payments/Payments';
 import Signup from './components/SignUp/Signup';
 import Login from './components/Login/Login'
 import Success from './components/SuccessPage/Succcess';
+// import SubscriptionPage from './components/Subscription/SubscriptionPage';
 
 import './style.css'
 
 import {
   createBrowserRouter,
-  Navigate,
-  NavLink,
   RouterProvider,
 } from "react-router-dom";
 import Working from './components/WorkingOnItPage/Working';
