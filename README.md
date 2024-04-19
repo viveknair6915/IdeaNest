@@ -15,7 +15,7 @@ IdeaConnect is a web application designed to bridge the gap between innovators w
 
 To get started with IdeaConnect, follow these steps:
 
-1. **Clone the Repository**: Clone this repository to your local machine using `git clone https://github.com/akshithere/ideaconnect.git`.
+1. **Clone the Repository**: Clone this repository to your local machine using `git clone [https://github.com/viveknair6915/IdeaNest.git]`.
 2. **Install Dependencies**: Install the necessary dependencies by running `npm install`.
 3. **Set Up Environment Variables**: Set up any required environment variables, such as API keys or database connection strings.
 4. **Run the Application**: Start the application by running `npm start`.
