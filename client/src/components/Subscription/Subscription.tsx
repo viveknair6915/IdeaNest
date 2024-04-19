@@ -1,12 +1,26 @@
-import { NavLink } from "react-router-dom"
-import { useState, createContext } from "react"
-import Payments from "../Payments/Payments"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import Payments from "../Payments/Payments";
 
-// Create the context with the specified type
-export const stateContext = createContext(1);
 export default function Subscription() {
-    const [idState, setIdState] = useState(1)
+    const [selectedSubscription, setSelectedSubscription] = useState(null);
+    const navigate = useNavigate();
+
+    const handleSubscriptionClick = async ({subscriptionId}:any) => {
+       await setSelectedSubscription(subscriptionId);
+       setTimeout(()=>{
+
+       },5000)
+        console.log("The selected subscription id before navigating is: " + selectedSubscription)
+        // Programmatically navigate to "/payments" route
+        {selectedSubscription && <Payments id={selectedSubscription} />}
+
+      
+       
+        
+        
+    };
 
     return (
         <div className="mt-8 mx-4">
@@ -17,30 +31,23 @@ export default function Subscription() {
 
             <div className="flex justify-center items-center">
                 <div className="w-64 h-64 text-4xl bg-gray-100 rounded-lg shadow-lg mx-4 my-2 flex justify-center font-primaryFont font-bold text-bgPrimary">
-                    <button onClick={async (e)=>{
-                        e.preventDefault()
-                        await setIdState(1)
-                        
-                    }}><NavLink to="/payments">Weekly</NavLink></button>
+                    <button onClick={async () => await handleSubscriptionClick(1)}>
+                        Weekly
+                    </button>
                 </div>
                 <div className="w-64 h-64 text-4xl bg-gray-100 rounded-lg shadow-lg mx-4 my-2 flex justify-center font-primaryFont font-bold text-bgPrimary">
-                <button onClick={async (e)=>{
-                        e.preventDefault()
-                        await setIdState(2)
-                        
-                    }}><NavLink to="/payments">Monthly</NavLink></button>
+                    <button onClick={() => handleSubscriptionClick(2)}>
+                        Monthly
+                    </button>
                 </div>
                 <div className="w-64 h-64 text-4xl bg-gray-100 rounded-lg shadow-lg mx-4 my-2 flex justify-center font-primaryFont font-bold text-bgPrimary">
-                <button onClick={async (e)=>{
-                        e.preventDefault()
-                        await setIdState(3)
-                        
-                    }}><NavLink to="/payments">Annualy</NavLink></button>
+                    <button onClick={() => handleSubscriptionClick(3)}>
+                        Annually
+                    </button>
                 </div>
             </div>
-                    {/* <stateContext.Provider value={idState}>
-                    <Payments/>
-                    </stateContext.Provider> */}
+
+           
         </div>
-    )
+    );
 }
