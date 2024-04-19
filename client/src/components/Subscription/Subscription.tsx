@@ -4,21 +4,15 @@ import { useNavigate } from "react-router-dom";
 import Payments from "../Payments/Payments";
 
 export default function Subscription() {
-    const [selectedSubscription, setSelectedSubscription] = useState(null);
+    const [selectedSubscription, setSelectedSubscription] = useState(1);
     const navigate = useNavigate();
 
-    const handleSubscriptionClick = async ({subscriptionId}:any) => {
-       await setSelectedSubscription(subscriptionId);
-       setTimeout(()=>{
-
-       },5000)
+    const handleSubscriptionClick = (subscriptionId: any) => {
+        setSelectedSubscription(subscriptionId);
         console.log("The selected subscription id before navigating is: " + selectedSubscription)
         // Programmatically navigate to "/payments" route
-        {selectedSubscription && <Payments id={selectedSubscription} />}
-
-      
        
-        
+        navigate("/payments")
         
     };
 
@@ -31,7 +25,7 @@ export default function Subscription() {
 
             <div className="flex justify-center items-center">
                 <div className="w-64 h-64 text-4xl bg-gray-100 rounded-lg shadow-lg mx-4 my-2 flex justify-center font-primaryFont font-bold text-bgPrimary">
-                    <button onClick={async () => await handleSubscriptionClick(1)}>
+                    <button onClick={() => handleSubscriptionClick(1)}>
                         Weekly
                     </button>
                 </div>
@@ -47,7 +41,7 @@ export default function Subscription() {
                 </div>
             </div>
 
-           
+            {selectedSubscription && <Payments id={selectedSubscription} />}
         </div>
     );
 }

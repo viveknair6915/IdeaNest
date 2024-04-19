@@ -17,6 +17,7 @@ import {
   NavLink,
   RouterProvider,
 } from "react-router-dom";
+import Working from './components/WorkingOnItPage/Working';
 
 
 
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
       {path:"/payments", Component: Payments},
       {path:"/signup", Component: Signup},
       {path:"/login", Component: Login},
-      {path:"/success", Component: Success}
+      {path:"/success", Component: Success},
+      {path:"/working", Component: Working}
     ],
   },
 
