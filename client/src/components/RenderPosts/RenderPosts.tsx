@@ -14,7 +14,7 @@ export default function RenderPosts() {
     }, []);
 
     const fetchPosts = () => {
-        axios.get(`https://dummyjson.com/posts?limit=${limit}&skip=${skip}`)
+        axios.get(`https://localhost:3000/posts?limit=${limit}&skip=${skip}`)
             .then((response) => {
                 setPosts((prevPosts): any => [...prevPosts, ...response.data.posts]);
                 console.log(posts)
