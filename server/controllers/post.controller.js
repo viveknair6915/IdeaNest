@@ -69,9 +69,33 @@ const createPostWithMediaController = async (req, res) => {
     }
 };
 
+
+const getAllPostsController = async (req, res) => {
+    const { limit = 10, skip = 0 } = req.query;
+
+    try {
+        const totalPosts = await Post.countDocuments();
+        const allPosts = await Post.find()
+            .populate('user')
+            .sort({ createdAt: -1 })
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .exec();
+
+        const totalPages = Math.ceil(totalPosts / limit);
+
+        return res.status(200).json({
+            totalPosts,
+            totalPages,
+            posts: allPosts
+        });
+    } catch (error) {
+        return handleError(res, 500, "Error In fetching all Posts", error);
+    }
+};
+
 const getAllPostsOfCoFounderController = async (req, res) => {
-    const { page = 1, limit = 10 } = req.query;
-    const skip = (page - 1) * limit;
+    const { limit = 10, skip = 0 } = req.query;
 
     try {
         const totalPosts = await Post.countDocuments({ "user.typeOfUser": 'Founder' });
@@ -86,17 +110,15 @@ const getAllPostsOfCoFounderController = async (req, res) => {
         return res.status(200).json({
             totalPosts,
             totalPages,
-            currentPage: parseInt(page),
             posts: cofounderPosts
-        });d
+        });
     } catch (error) {
         return handleError(res, 500, "Error in fetching co-founder posts", error);
     }
 };
 
 const getAllPostsOfInvestorController = async (req, res) => {
-    const { page = 1, limit = 10 } = req.query;
-    const skip = (page - 1) * limit;
+    const { limit = 10, skip = 0 } = req.query;
 
     try {
         const totalPosts = await Post.countDocuments({ "user.typeOfUser": 'Investor' });
@@ -111,7 +133,6 @@ const getAllPostsOfInvestorController = async (req, res) => {
         return res.status(200).json({
             totalPosts,
             totalPages,
-            currentPage: parseInt(page),
             posts: investorPosts
         });
     } catch (error) {
@@ -133,31 +154,6 @@ const deletePostController = async (req, res) => {
 };
 
 
-const getAllPostsController = async (req, res) => {
-    const { page = 1, limit = 10 } = req.query;
-    const skip = (page - 1) * limit;
-
-    try {
-        const totalPosts = await Post.countDocuments();
-        const allPosts = await Post.find()
-            .populate('user')
-            .sort({ createdAt: -1 })
-            .skip(parseInt(skip))
-            .limit(parseInt(limit))
-            .exec();
-
-        const totalPages = Math.ceil(totalPosts / limit);
-
-        return res.status(200).json({
-            totalPosts,
-            totalPages,
-            currentPage: parseInt(page),
-            posts: allPosts
-        });
-    } catch (error) {
-        return handleError(res, 500, "Error In fetching all Posts", error);
-    }
-};
 
 const getAllPostByIdController = async (req, res) => {
     try {
