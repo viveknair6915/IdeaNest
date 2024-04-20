@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router()
-const { createPostController,createPostWithMediaController, deletePostController, getAllPostsController,getAllPostsOfInvestorController,getAllPostsOfCoFounderController, getAllPostByIdController, likePostController } = require("../controllers/post.controller")
+const { createPostController, createPostWithMediaController, deletePostController, getAllPostsController,getAllPostsOfInvestorController,getAllPostsOfCoFounderController, getAllPostByIdController, likePostController } = require("../controllers/post.controller")
 const upload = require("../middleware/multer.middleware")
 
 
