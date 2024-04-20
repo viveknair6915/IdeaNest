@@ -226,6 +226,7 @@ const likePostController = async (req, res) => {
 };
 
 module.exports = {
+    createPostController,
     createPostWithMediaController,
     getAllPostsOfCoFounderController,
     getAllPostsOfInvestorController,
