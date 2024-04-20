@@ -3,28 +3,21 @@ import axios from 'axios';
 
 export default function Post() {
     const [caption, setCaption] = useState("");
-    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [description,setDescription] = useState("fjsfh")
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-            setSelectedFiles([...selectedFiles, ...Array.from(event.target.files)]);
-        }
-    };
+   
 
     const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-
-        const formData = new FormData();
-        formData.append('userId', '6622e78c789d4a45c6ded9df'); // Replace 'user_id_here' with the actual user ID
-        formData.append('caption', caption);
-        selectedFiles.forEach(file => {
-            formData.append('media', file);
-        });
-
+    
         try {
-            const response = await axios.post('http://localhost:3000/post/posts/with-media', formData, {
+            const response = await axios.post('http://localhost:3000/post/posts/', {
+                userId: '6622e78c789d4a45c6ded9df', // Replace 'your_user_id_here' with the actual user ID
+                caption: caption,
+                description: description
+            }, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'application/json'
                 }
             });
             console.log(response.data);
@@ -34,6 +27,7 @@ export default function Post() {
             // Handle error response
         }
     };
+    
 
     return (
         <>
@@ -66,7 +60,7 @@ export default function Post() {
                                                 id="file"
                                                 name="file"
                                                 className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
-                                                onChange={handleFileChange}
+                                                
                                             />
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                                 <path fillRule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
@@ -81,7 +75,7 @@ export default function Post() {
                                                 name="video"
                                                 accept="video/*"
                                                 className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
-                                                onChange={handleFileChange}
+                                               
                                             />
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                                 <path d="M4.5 4.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h8.25a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3H4.5ZM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06Z" />
@@ -96,7 +90,7 @@ export default function Post() {
                                                 name="img"
                                                 accept="image/*"
                                                 className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
-                                                onChange={handleFileChange}
+                                                // onChange={handleFileChange}
                                             />
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                                 <path fillRule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clipRule="evenodd" />

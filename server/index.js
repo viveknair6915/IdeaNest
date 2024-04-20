@@ -31,7 +31,7 @@ const postRouter = require("./routes/post.route");
 
 
 app.use("/user", verifyToken, userRouter);
-app.use("/post", verifyToken, postRouter);
+app.use("/post", postRouter);
 
 connectDB()
 
