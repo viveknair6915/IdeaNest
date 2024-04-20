@@ -9,6 +9,7 @@ import Signup from './components/SignUp/Signup';
 import Login from './components/Login/Login'
 import Success from './components/SuccessPage/Succcess';
 import UserFeed from './components/UserFeed/UserFeed';
+import ProfileCard from './components/ProfileCard/Profile'
 // import SubscriptionPage from './components/Subscription/SubscriptionPage';
 
 import './style.css'
@@ -39,7 +40,8 @@ const router = createBrowserRouter([
       {path:"/success", Component: Success},
       {path:"/working", Component: Working},
       {path:"/userFeed", Component: UserFeed},
-      {path:"/investorfeed", Component: InvestorFeed}
+      {path:"/investorfeed", Component: InvestorFeed},
+      {path:"/mentorship", Component: ProfileCard}
     ],
   },
 

@@ -12,7 +12,7 @@ export default function Post() {
     
         try {
             const response = await axios.post('http://localhost:3000/post/posts/', {
-                userId: '6622e78c789d4a45c6ded9df', // Replace 'your_user_id_here' with the actual user ID
+                userId: '6624124171c333405843976a', // Replace 'your_user_id_here' with the actual user ID
                 caption: caption,
                 description: description
             }, {
@@ -33,18 +33,28 @@ export default function Post() {
         <>
             <div className="mx-4 my-10">
                 <div className="rounded-xl shadow-2xl justify-evenly items-stretch flex-col w-80 h-70 p-4 ">
-                    <div className="flex justify-between mb-14">
+                    <div className="flex justify-between mb-14 flex-col">
                         <div className="w-8 h-8 rounded-2xl">
                             <img className="rounded" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Profile" />
                         </div>
-                        <div className="flex">
+                        <div className="flex mb-3">
                             <textarea
                                 className="resize-none border border-solid border-slate-600 rounded p-2"
                                 value={caption}
                                 onChange={e => setCaption(e.target.value)}
                                 placeholder="Caption"
-                                cols={28}
+                                cols={20}
                                 rows={5}
+                            ></textarea>
+                        </div>
+                        <div className="flex ">
+                            <textarea
+                                className="mt-3 resize-none border border-solid border-slate-600 rounded p-2"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                                placeholder="Description"
+                                cols={20}
+                                rows={3}
                             ></textarea>
                         </div>
                     </div>

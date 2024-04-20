@@ -560,6 +560,40 @@ video {
   --tw-contain-style:  ;
 }
 
+.container{
+  width: 100%;
+}
+
+@media (min-width: 640px){
+  .container{
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px){
+  .container{
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px){
+  .container{
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px){
+  .container{
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px){
+  .container{
+    max-width: 1536px;
+  }
+}
+
 .absolute{
   position: absolute;
 }
@@ -614,6 +648,10 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mb-3{
+  margin-bottom: 0.75rem;
+}
+
 .mb-6{
   margin-bottom: 1.5rem;
 }
@@ -624,6 +662,10 @@ video {
 
 .mt-10{
   margin-top: 2.5rem;
+}
+
+.mt-3{
+  margin-top: 0.75rem;
 }
 
 .mt-4{
@@ -640,6 +682,10 @@ video {
 
 .mt-8{
   margin-top: 2rem;
+}
+
+.mb-5{
+  margin-bottom: 1.25rem;
 }
 
 .block{
@@ -678,6 +724,10 @@ video {
   height: 100vh;
 }
 
+.h-60{
+  height: 15rem;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -704,6 +754,10 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.w-60{
+  width: 15rem;
 }
 
 .transform{
@@ -794,6 +848,11 @@ video {
   border-color: rgb(71 85 105 / var(--tw-border-opacity));
 }
 
+.border-black{
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
 .bg-bgPrimary{
   --tw-bg-opacity: 1;
   background-color: rgb(102 107 237 / var(--tw-bg-opacity));
@@ -838,6 +897,18 @@ video {
   padding: 1.5rem;
 }
 
+.p-5{
+  padding: 1.25rem;
+}
+
+.p-10{
+  padding: 2.5rem;
+}
+
+.p-8{
+  padding: 2rem;
+}
+
 .px-10{
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -880,6 +951,10 @@ video {
 
 .pb-5{
   padding-bottom: 1.25rem;
+}
+
+.pt-16{
+  padding-top: 4rem;
 }
 
 .text-center{
@@ -1028,6 +1103,20 @@ video {
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: #c0a0b9;
+}
+
+.blue-glassmorphism {
+  background: linear-gradient(to right, black, #0c146b, #b00c1d);
+  /* Other styles */
+  width: 100%;
+  height: 200px;
+}
+
+.blue-navbar {
+  background: linear-gradient(to right, black, #0c146b, #b00c1d);
+  /* Other styles */
+  width: 100%;
+  height: 200px;
 }
 
 .selection\:text-bgPrimaryBg *::-moz-selection{
