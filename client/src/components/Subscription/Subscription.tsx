@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Payments from "../Payments/Payments";
+// import Payments from "../Payments/Payments";
 
 export default function Subscription() {
     const [selectedSubscription, setSelectedSubscription] = useState(1);
@@ -41,7 +41,7 @@ export default function Subscription() {
                 </div>
             </div>
 
-            {selectedSubscription && <Payments id={selectedSubscription} />}
+            {/* {selectedSubscription && <Payments id={selectedSubscription} />} */}
         </div>
     );
 }

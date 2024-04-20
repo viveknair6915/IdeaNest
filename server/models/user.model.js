@@ -5,11 +5,11 @@ const userSchema = new mongoose.Schema({
     // Founder Or Investor
     typeOfUser: {
         type: String,
-        required: true
+        required: false
     },
     fullName: {
         type: String,
-        required: true
+        required: false
     },
     username: {
         type: String,
@@ -30,12 +30,12 @@ const userSchema = new mongoose.Schema({
     },
     companyName: {
         type: String,
-        required: true
+        required: false
     },
     // medical ,fintech or digital etc
     typeOfCompany: {
         type: String,
-        required: true
+        required: false
     },
     likes: {
         type: Number

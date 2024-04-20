@@ -1,17 +1,27 @@
 const Post = require("../models/post.model");
 const User = require("../models/user.model");
-const { uploadOnCloudinary } = require("../utils/cloudinary")
+const { uploadOnCloudinary } = require("../utils/cloudinary");
 const dotenv = require("dotenv");
 dotenv.config();
 
-// Controller for creating a post with or without media
+const handleError = (res, statusCode, message, error) => {
+    return res.status(statusCode).json({ error: { message }, details: error });
+};
+
+const userNotFound = (res) => {
+    return handleError(res, 404, "User Not Found!!");
+};
+
+const postNotFound = (res) => {
+    return handleError(res, 404, "Post Not Found!!");
+};
+
+
 const createPostController = async (req, res) => {
     const { userId, caption, description } = req.body;
     try {
         const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json("User Not Found!!");
-        }
+        if (!user) return userNotFound(res);
 
         const newPost = new Post({
             user: userId,
@@ -22,9 +32,9 @@ const createPostController = async (req, res) => {
         user.posts.push(newPost._id);
         await user.save();
 
-        return res.status(201).json({ msg: "New Post Created Successfully!!", post: newPost });
+        return res.status(201).json({ message: "New Post Created Successfully!!", post: newPost });
     } catch (error) {
-        return res.status(500).json({ msg: "Error in Creating Post", err: error });
+        return handleError(res, 500, "Error in Creating Post", error);
     }
 };
 
@@ -32,18 +42,15 @@ const createPostWithMediaController = async (req, res) => {
     const { userId, caption, description } = req.body;
     try {
         const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json("User Not Found!!");
-        }
+        if (!user) return userNotFound(res);
 
         const mediaUrls = [];
         if (req.files && req.files.length > 0) {
             for (const file of req.files) {
                 const cloudinaryResponse = await uploadOnCloudinary(file.path);
-                if (!cloudinaryResponse) {
-                    continue;
+                if (cloudinaryResponse) {
+                    mediaUrls.push(cloudinaryResponse.secure_url);
                 }
-                mediaUrls.push(cloudinaryResponse.secure_url);
             }
         }
 
@@ -51,55 +58,128 @@ const createPostWithMediaController = async (req, res) => {
             user: userId,
             caption,
             description,
-            media: mediaUrls // Array of media URLs
+            media: mediaUrls
         });
         await newPost.save();
         user.posts.push(newPost._id);
         await user.save();
 
-        return res.status(201).json({ msg: "New Post Created Successfully!!", post: newPost });
+        return res.status(201).json({ message: "New Post Created Successfully!!", post: newPost });
     } catch (error) {
-        return res.status(500).json({ msg: "Error in Creating Post", err: error });
+        return handleError(res, 500, "Error in Creating Post", error);
     }
 };
 
 
-const deletePostController = async(req, res) => {
+const getAllPostsController = async (req, res) => {
+    const { limit = 10, skip = 0 } = req.query;
+
     try {
-        const {postId} = req.params;
+        const totalPosts = await Post.countDocuments();
+        const allPosts = await Post.find()
+            .populate('user')
+            .sort({ createdAt: -1 })
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .exec();
+
+        const totalPages = Math.ceil(totalPosts / limit);
+
+        return res.status(200).json({
+            totalPosts,
+            totalPages,
+            posts: allPosts
+        });
+    } catch (error) {
+        return handleError(res, 500, "Error In fetching all Posts", error);
+    }
+};
+
+const getAllPostsOfCoFounderController = async (req, res) => {
+    const { limit = 10, skip = 0 } = req.query;
+
+    try {
+        const totalPosts = await Post.countDocuments({ "user.typeOfUser": 'Founder' });
+        const cofounderPosts = await Post.find({ "user.typeOfUser": 'Founder' })
+            .populate('user')
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .exec();
+
+        const totalPages = Math.ceil(totalPosts / limit);
+
+        return res.status(200).json({
+            totalPosts,
+            totalPages,
+            posts: cofounderPosts
+        });
+    } catch (error) {
+        return handleError(res, 500, "Error in fetching co-founder posts", error);
+    }
+};
+
+const getAllPostsOfInvestorController = async (req, res) => {
+    const { limit = 10, skip = 0 } = req.query;
+
+    try {
+        const totalPosts = await Post.countDocuments({ "user.typeOfUser": 'Investor' });
+        const investorPosts = await Post.find({ "user.typeOfUser": 'Investor' })
+            .populate('user')
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .exec();
+
+        const totalPages = Math.ceil(totalPosts / limit);
+
+        return res.status(200).json({
+            totalPosts,
+            totalPages,
+            posts: investorPosts
+        });
+    } catch (error) {
+        return handleError(res, 500, "Error in fetching investor posts", error);
+    }
+};
+
+const deletePostController = async (req, res) => {
+    try {
+        const { postId } = req.params;
         const findPost = await Post.findById(postId);
-        if (!findPost) {
-            return res.status(404).json("No Post Found!!");
-        }
-        await Post.deleteOne({_id: postId});
-        return res.status(200).json({ msg: "Post deleted successfully." });
+        if (!findPost) return postNotFound(res);
+
+        await Post.deleteOne({ _id: postId });
+        return res.status(200).json({ message: "Post deleted successfully." });
     } catch (error) {
-        return res.status(500).json({ msg: "Error In deleting Post", error });
+        return handleError(res, 500, "Error In deleting Post", error);
     }
 };
 
-const getAllPostsController = async(req, res) => {
-    try {
-        const allPosts = await Post.find();
-        if (allPosts.length === 0) {
-            return res.status(404).json("No Post Found");
-        }
-        return res.status(200).json(allPosts);
-    } catch (error) {
-        return res.status(500).json({ msg: "Error In fetching all Posts", error });
-    }
-};
+// <<<<<<< main
+// const getAllPostsController = async (req, res) => {
+//     try {m
+//         const allPosts = await Post.find();
+//         if (allPosts.length === 0) {
+//             return res.status(404).json("No Post Found");
+//         }
+//         return res.status(200).json(allPosts);
+//     } catch (error) {
+//         return handleError(res, 500, "Error In fetching all Posts", error);
+//     }
+// };
+// =======
 
-const getAllPostByIdController = async(req, res) => {
+// >>>>>>> main
+
+const getAllPostByIdController = async (req, res) => {
     try {
-        const {userId} = req.body;
+        const { userId } = req.params;
         const allPostsOfUser = await Post.find({ user: userId });
         if (allPostsOfUser.length === 0) {
             return res.status(404).json("No Posts are Created");
         }
         return res.status(200).json(allPostsOfUser);
     } catch (error) {
-        return res.status(500).json({ msg: "Error In fetching all Posts of User", error });
+        return handleError(res, 500, "Error In fetching all Posts of User", error);
     }
 };
 
@@ -108,22 +188,29 @@ const likePostController = async (req, res) => {
     const { userId } = req.body;
     try {
         const post = await Post.findById(postId);
-        if (!post) {
-            return res.status(404).json("No Post found");
-        }
+        if (!post) return postNotFound(res);
+
         const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json("User Not Found");
-        }
+        if (!user) return userNotFound(res);
+
         if (post.likes.includes(userId)) {
-            return res.status(400).json("You already liked This Post");
+            return res.status(400).json({ message: "You already liked This Post" });
         }
         post.likes.push(userId);
         await post.save();
-        return res.status(200).json({ msg: "You liked the post", post });
+        return res.status(200).json({ message: "You liked the post", post });
     } catch (error) {
-        return res.status(500).json({ msg: "Internal Server Error", error });
+        return handleError(res, 500, "Internal Server Error", error);
     }
 };
 
-module.exports = { createPostController,createPostWithMediaController, deletePostController, getAllPostsController, getAllPostByIdController, likePostController };
+module.exports = {
+    createPostController,
+    createPostWithMediaController,
+    getAllPostsOfCoFounderController,
+    getAllPostsOfInvestorController,
+    deletePostController,
+    getAllPostsController,
+    getAllPostByIdController,
+    likePostController
+};

@@ -33,7 +33,7 @@ export default function Payments(props: any) {
     }
 
     return (
-        <div className="flex justify-center items-center flex-col h-screen" style={{ backgroundImage: 'url("https://source.lol/bot.gif")' }}>
+        <div className="flex justify-center items-center flex-col h-screen blue-glassmorphism" >
             <h1 className="text-6xl font-bold font-primaryFont text-white"><i> Pay the way you like </i></h1>
             <div className="flex justify-center items-center mt-10">
                 <div className="mx-5">

@@ -1,34 +1,62 @@
-require('dotenv').config();
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const verifyToken = require("./middleware/verifyToken.middleware");
+const connectDB = require("./database/database");
+
+const dotenv = require("dotenv")
+dotenv.config()
+
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
-const app = express();
-const port = 3000;
+
+
+
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cookieParser());
+
+connectDB();
+
+const authRouter = require('./routes/auth.route')
+const userRouter = require("./routes/user.route");
+const postRouter = require("./routes/post.route");
+
+
+
+
+app.use("/user", verifyToken, userRouter);
+app.use("/post", verifyToken, postRouter);
+
+connectDB()
 
 const storeItems = new Map([
-    [1, {priceInCents: 10000, name: "Weekly Subscription to unlimited ideas"}],
-    [2, {priceInCents: 20000, name: "Monthly Subscription to unlimited ideas"}],
-    [3, {priceInCents: 30000, name: "Annual Subscription to unlimited ideas"}]
+    [1, { priceInCents: 10000, name: "Weekly Subscription to unlimited ideas" }],
+    [2, { priceInCents: 20000, name: "Monthly Subscription to unlimited ideas" }],
+    [3, { priceInCents: 30000, name: "Annual Subscription to unlimited ideas" }]
 ]);
+
+app.use('/auth',authRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
+
+
 
 app.post('/paymenthandler', async (req, res) => {
     try {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',
-            line_items: req.body.items.map((item) =>  {
+            line_items: req.body.items.map((item) => {
                 const storeItem = storeItems.get(item.id);
-                if (!storeItem) { // Check if storeItem is undefined
+                if (!storeItem) {
                     throw new Error(`Item with ID ${item.id} not found in storeItems.`);
                 }
                 return {
@@ -53,6 +81,7 @@ app.post('/paymenthandler', async (req, res) => {
     }
 });
 
+
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });

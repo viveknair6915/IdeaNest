@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css'; 
+import '../../../src/App.css'; 
 
-function SubscriptionPage() {
+export default function SubscriptionPage() {
   return (
     <div>
       <div className="togethere-background"></div>
@@ -41,4 +41,4 @@ function SubscriptionPage() {
   );
 }
 
-export default SubscriptionPage;
+
