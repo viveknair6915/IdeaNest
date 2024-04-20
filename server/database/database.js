@@ -7,7 +7,7 @@ const connectDB = async () => {
         if (!process.env.MONGO_URI || !process.env.DBNAME) {
             throw new Error("MONGO_URI or DBNAME is missing in environment variables");
         }
-
+        console.log("Trying to Connect to db")
         const connection = await mongoose.connect(`${process.env.MONGO_URI}/${process.env.DBNAME}`);
         
         console.log("Database Connected Successfully!!");

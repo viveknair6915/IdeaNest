@@ -1,10 +1,39 @@
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+ 
 import { NavLink } from "react-router-dom";
-function onClickHandler(e){
-    //handle on click
-    e.preventDefault()
-    //post request to server -> save in db
-}
+
 export default function Signup() {
+const [username,setUsername] = useState("")
+const [email,setEmail] = useState("")
+const [password,setPassword] = useState("")
+const [typeOfUser,setType] = useState("user")
+const navigate = useNavigate()
+
+async function onClickHandler(e:any){
+    //handle on click
+
+    e.preventDefault()
+    const response = await axios.post("http://localhost:3000/auth/register",
+    {username: username,
+    email: email,
+    password: password,
+    typeOfUser: typeOfUser
+    }
+    )
+    console.log(response.data); // Assuming server returns some data
+    //post request to server -> save in db
+
+    if (typeOfUser === "investor") {
+        navigate("/");
+    } else {
+        navigate("/userfeed");
+    }
+
+
+    
+}
     return (
         <div className="bg-cover bg-center h-screen flex flex-row" style={{backgroundImage: "url('signup.gif')"}}>
             <div className="w-1/2 h-full flex justify-center items-center flex-col">
@@ -35,7 +64,9 @@ export default function Signup() {
                     </svg>
                 </span>
 
-                <input type="text" className="border-gray-700 block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-bgPrimary dark:focus:border-bgPrimaryBg focus:ring-bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
+                <input onChange={(e)=>{
+                    setUsername(e.target.value)
+                }}   type="text" className="border-gray-700 block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-bgPrimary dark:focus:border-bgPrimaryBg focus:ring-bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
             </div>
 
             <label className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600">
@@ -46,6 +77,7 @@ export default function Signup() {
                 <h2 className="mx-3 text-gray-400">Profile Photo</h2>
 
                 <input id="dropzone-file" accept="image/*" type="file" className="hidden" />
+               
             </label>
 
             <div className="relative flex items-center mt-6">
@@ -54,8 +86,13 @@ export default function Signup() {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                 </span>
+                
+              
 
-                <input type="email" className="block w-full py-3 border-gray-700  bg-white border rounded-lg px-11   focus:border-bgPrimaryBg dark:focus:border-bgPrimary focus:bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                <input onChange={(e)=>{
+                    setEmail(e.target.value)
+                    console.log("Email is: " + email)
+                }} type="email" className="block w-full py-3 border-gray-700  bg-white border rounded-lg px-11   focus:border-bgPrimaryBg dark:focus:border-bgPrimary focus:bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
             </div>
 
             <div className="relative flex items-center mt-4">
@@ -65,8 +102,29 @@ export default function Signup() {
                     </svg>
                 </span>
 
-                <input type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                <input onChange={(e)=>{
+                    setPassword(e.target.value)
+                    
+                }} type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
             </div>
+
+
+            <div className="relative flex items-center mt-4">
+                <span className="absolute">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </span>
+
+                <label htmlFor="type">
+              <input onChange={(e)=>{
+                    setType(e.target.value)
+                }}   type="text" className="border-gray-700 block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-bgPrimary dark:focus:border-bgPrimaryBg focus:ring-bgPrimary focus:outline-none focus:ring focus:ring-opacity-40" placeholder="user/investor?" />
+              </label>
+            </div>
+
+
+           
 
             <div className="relative flex items-center mt-4">
                 <span className="absolute">

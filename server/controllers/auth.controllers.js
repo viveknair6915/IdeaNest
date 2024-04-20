@@ -7,7 +7,11 @@ const jwt_secret = process.env.SECRET;
 
 const registerController = async (req, res, next) => {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password, typeOfUser } = req.body;
+        console.log("username recieved in controller is: " + username)
+        console.log("email recieved in controller is: " + email)
+        console.log("password recieved in controller is: " + password)
+        console.log("type recieved in controller is: " + typeOfUser)
 
         const existingUser = await User.findOne({ $or: [{ email }, { username }] });
         if (existingUser) {
@@ -16,9 +20,10 @@ const registerController = async (req, res, next) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = new User({
+        const newUser = await new User({
             ...req.body,
             password: hashedPassword,
+            
         });
 
         const savedUser = await newUser.save();

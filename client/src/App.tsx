@@ -8,13 +8,13 @@ import Payments from './components/Payments/Payments';
 import Signup from './components/SignUp/Signup';
 import Login from './components/Login/Login'
 import Success from './components/SuccessPage/Succcess';
+import UserFeed from './components/UserFeed/UserFeed';
+// import SubscriptionPage from './components/Subscription/SubscriptionPage';
 
 import './style.css'
 
 import {
   createBrowserRouter,
-  Navigate,
-  NavLink,
   RouterProvider,
 } from "react-router-dom";
 import Working from './components/WorkingOnItPage/Working';
@@ -36,7 +36,8 @@ const router = createBrowserRouter([
       {path:"/signup", Component: Signup},
       {path:"/login", Component: Login},
       {path:"/success", Component: Success},
-      {path:"/working", Component: Working}
+      {path:"/working", Component: Working},
+      {path:"/userFeed", Component: UserFeed}
     ],
   },
 
