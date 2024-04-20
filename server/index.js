@@ -3,15 +3,15 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const verifyToken = require("./middlewares/verifyToken.middleware");
+const verifyToken = require("./middleware/verifyToken.middleware");
 const connectDB = require("./database/database");
 
 const dotenv = require("dotenv")
 dotenv.config()
 
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
-const authRouter = require('./routes/auth.route')
-const connectDB = require('./database/database')
+
+
 
 
 const port = process.env.PORT || 3000;
@@ -23,13 +23,15 @@ app.use(cookieParser());
 
 connectDB();
 
-const authRoute = require("./routes/auth.route");
-const userRoute = require("./routes/user.route");
-const postRoute = require("./routes/post.route");
+const authRouter = require('./routes/auth.route')
+const userRouter = require("./routes/user.route");
+const postRouter = require("./routes/post.route");
 
-app.use("/api/auth", authRoute);
-app.use("/api/user", verifyToken, userRoute);
-app.use("/api/post", verifyToken, postRoute);
+
+
+
+app.use("/user", verifyToken, userRouter);
+app.use("/post", verifyToken, postRouter);
 
 connectDB()
 

@@ -11,29 +11,34 @@ const [password,setPassword] = useState("")
 const [typeOfUser,setType] = useState("user")
 const navigate = useNavigate()
 
-async function onClickHandler(e:any){
-    //handle on click
+async function onClickHandler(e: any) {
+    e.preventDefault();
+    try {
+        const response = await axios.post("http://localhost:3000/auth/register", {
+            username: username,
+            email: email,
+            password: password,
+            typeOfUser: typeOfUser
+        });
 
-    e.preventDefault()
-    const response = await axios.post("http://localhost:3000/auth/register",
-    {username: username,
-    email: email,
-    password: password,
-    typeOfUser: typeOfUser
+        // Assuming server returns some data with a token
+        const token = response.data.token;
+        console.log("The token recieved is: " + token)
+
+        // Save the token in local storage
+        localStorage.setItem("token", token);
+
+        if (typeOfUser === "investor") {
+            navigate("/");
+        } else {
+            navigate("/userfeed");
+        }
+    } catch (error) {
+        // Handle error, if any
+        console.error("Error during signup:", error);
     }
-    )
-    console.log(response.data); // Assuming server returns some data
-    //post request to server -> save in db
-
-    if (typeOfUser === "investor") {
-        navigate("/");
-    } else {
-        navigate("/userfeed");
-    }
-
-
-    
 }
+
     return (
         <div className="bg-cover bg-center h-screen flex flex-row" style={{backgroundImage: "url('signup.gif')"}}>
             <div className="w-1/2 h-full flex justify-center items-center flex-col">

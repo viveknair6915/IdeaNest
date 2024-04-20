@@ -16,6 +16,7 @@ const postNotFound = (res) => {
     return handleError(res, 404, "Post Not Found!!");
 };
 
+
 const createPostController = async (req, res) => {
     const { userId, caption, description } = req.body;
     try {
@@ -153,7 +154,21 @@ const deletePostController = async (req, res) => {
     }
 };
 
+// <<<<<<< main
+// const getAllPostsController = async (req, res) => {
+//     try {m
+//         const allPosts = await Post.find();
+//         if (allPosts.length === 0) {
+//             return res.status(404).json("No Post Found");
+//         }
+//         return res.status(200).json(allPosts);
+//     } catch (error) {
+//         return handleError(res, 500, "Error In fetching all Posts", error);
+//     }
+// };
+// =======
 
+// >>>>>>> main
 
 const getAllPostByIdController = async (req, res) => {
     try {
