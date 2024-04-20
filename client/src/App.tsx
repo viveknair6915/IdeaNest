@@ -18,6 +18,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Working from './components/WorkingOnItPage/Working';
+import { InvestorFeed } from './components/InvestorFeed/InvestorFeed';
 
 
 
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
       {path:"/login", Component: Login},
       {path:"/success", Component: Success},
       {path:"/working", Component: Working},
-      {path:"/userFeed", Component: UserFeed}
+      {path:"/userFeed", Component: UserFeed},
+      {path:"/investorfeed", Component: InvestorFeed}
     ],
   },
 
