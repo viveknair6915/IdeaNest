@@ -16,6 +16,7 @@ const postNotFound = (res) => {
     return handleError(res, 404, "Post Not Found!!");
 };
 
+
 const createPostController = async (req, res) => {
     const { userId, caption, description } = req.body;
     try {
@@ -101,7 +102,7 @@ const deletePostController = async (req, res) => {
 };
 
 const getAllPostsController = async (req, res) => {
-    try {
+    try {m
         const allPosts = await Post.find();
         if (allPosts.length === 0) {
             return res.status(404).json("No Post Found");
