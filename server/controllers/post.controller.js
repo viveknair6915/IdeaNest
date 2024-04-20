@@ -60,26 +60,17 @@ const createPostController = async (req, res) => {
 
 
 const createPostWithMediaController = async (req, res) => {
-    const { userId, caption, description } = req.body;
+    const { userId, caption, description, link } = req.body;
+    console.log("link is: " + link)
     try {
         const user = await User.findById(userId);
         if (!user) return userNotFound(res);
-
-        const mediaUrls = [];
-        if (req.files && req.files.length > 0) {
-            for (const file of req.files) {
-                const cloudinaryResponse = await uploadOnCloudinary(file.path);
-                if (cloudinaryResponse) {
-                    mediaUrls.push(cloudinaryResponse.secure_url);
-                }
-            }
-        }
 
         const newPost = new Post({
             user: userId,
             caption,
             description,
-            media: mediaUrls
+            link: link
         });
         await newPost.save();
         user.posts.push(newPost._id);
@@ -95,7 +86,7 @@ const createPostWithMediaController = async (req, res) => {
 const getAllPostsController = async (req, res) => {
     const { limit = 10, skip = 0 } = req.query;
 
-    try {
+    
         const totalPosts = await Post.countDocuments();
         const allPosts = await Post.find()
             .populate('user')
@@ -111,33 +102,28 @@ const getAllPostsController = async (req, res) => {
             totalPages,
             posts: allPosts
         });
-    } catch (error) {
-        return handleError(res, 500, "Error In fetching all Posts", error);
-    }
+    
 };
 
 const getAllPostsOfCoFounderController = async (req, res) => {
     const { limit = 10, skip = 0 } = req.query;
-
+    
     try {
-        const totalPosts = await Post.countDocuments({ "user.typeOfUser": 'Founder' });
-        const cofounderPosts = await Post.find({ "user.typeOfUser": 'Founder' })
-            .populate('user')
+        const cofounderPosts = await Post.find({})
             .skip(parseInt(skip))
             .limit(parseInt(limit))
             .exec();
 
-        const totalPages = Math.ceil(totalPosts / limit);
-
         return res.status(200).json({
-            totalPosts,
-            totalPages,
             posts: cofounderPosts
         });
     } catch (error) {
-        return handleError(res, 500, "Error in fetching co-founder posts", error);
+        return handleError(res, 500, "Error in fetching posts", error);
     }
 };
+
+module.exports = getAllPostsOfCoFounderController;
+
 
 const getAllPostsOfInvestorController = async (req, res) => {
     const { limit = 10, skip = 0 } = req.query;

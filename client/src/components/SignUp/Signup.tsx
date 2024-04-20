@@ -12,6 +12,7 @@ const [typeOfUser,setType] = useState("user")
 const navigate = useNavigate()
 
 async function onClickHandler(e: any) {
+
     e.preventDefault();
     try {
         const response = await axios.post("http://localhost:3000/auth/register", {
@@ -29,9 +30,10 @@ async function onClickHandler(e: any) {
         localStorage.setItem("token", token);
 
         if (typeOfUser === "investor") {
-            navigate("/");
+            navigate("/investorfeed");
         } else {
-            navigate("/userfeed");
+            localStorage.setItem("showChat", "true")
+            window.location.href = "/userfeed"
         }
     } catch (error) {
         // Handle error, if any
@@ -43,11 +45,12 @@ async function onClickHandler(e: any) {
         <div className="bg-cover bg-center h-screen flex flex-row" style={{backgroundImage: "url('signup.gif')"}}>
             <div className="w-1/2 h-full flex justify-center items-center flex-col">
                 <h1 className="text-4xl text-white font-primaryFont">Hello</h1>
-                <h1 className="text-2xl text-white font-primaryFont">Dont Have an Account Yet?</h1>
+                <h1 className="text-2xl text-white font-primaryFont">Already Have an account</h1>
                 <button onClick={(e)=>{
                         e.preventDefault()
+                        navigate("/login")
                     }} className="bg-bgPrimaryBg text-white font-primaryFont font-bold  text-lg rounded px-3 py-2 flex items-center hover:px-5 hover:shadow-lg transition-all duration-300 ease-in-out">
-                        Create Now!
+                        Login Now!
                         </button>
             </div>
             <div className="w-1/2 h-full flex justify-center items-center bg-white shadow-2xl rounded-2xl m-1">
@@ -149,7 +152,7 @@ async function onClickHandler(e: any) {
                 </button>
 
                 <div className="mt-6 text-center ">
-                    <NavLink to="/login" className="text-sm text-bgPrimary hover:underline hover:text-bgPrimaryBg dark:text-blue-400">
+                    <NavLink to="/login" className="text-lg text-bgPrimary hover:underline hover:text-bgPrimaryBg dark:text-blue-400">
                         Already have an account?
                     </NavLink>
                 </div>

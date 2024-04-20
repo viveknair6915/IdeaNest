@@ -9,7 +9,7 @@ router.post('/posts/with-media',  createPostWithMediaController);
 router.delete('/deletepost/:postId',deletePostController);
 router.get('/allposts',getAllPostsController)
 router.get('/posts/investors', getAllPostsOfInvestorController);
-router.get('/posts/cofounders', getAllPostsOfCoFounderController);
+router.get('/posts/cofounders', getAllPostsController);
 router.get('/posts/:userId',getAllPostByIdController)
 router.post("/like/:postId",likePostController)
 

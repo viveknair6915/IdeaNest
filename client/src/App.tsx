@@ -11,7 +11,6 @@ import Success from "./components/SuccessPage/Succcess";
 import UserFeed from "./components/UserFeed/UserFeed";
 import Lobby from "./screens/Lobby";
 import Room from "./screens/Room";
-// import SubscriptionPage from './components/Subscription/SubscriptionPage';
 
 import "./style.css";
 
@@ -26,8 +25,7 @@ const router = createBrowserRouter([
 
     errorElement: <ErrorPage />,
 
-    children: [
-      { index: true, Component: Home },
+
       { path: "/profile", Component: Profile },
       { path: "/subscription", Component: Subscription },
       { path: "/payments", Component: Payments },
@@ -39,6 +37,7 @@ const router = createBrowserRouter([
       { path: "/investorfeed", Component: InvestorFeed },
       { path: "/confrence", Component: Lobby },
       { path: "/Room/:roomId", Component: Room },
+
     ],
   },
 
@@ -66,6 +65,18 @@ function App() {
       window.location.href = "/";
     }
   }, []);
+  //  { path: "/profile", Component: Profile},
+//       {path:"/subscription", Component: SubscriptionPage},
+//       {path:"/payments", Component: Payments},
+//       {path:"/signup", Component: Signup},
+//       {path:"/login", Component: Login},
+//       {path:"/success", Component: Success},
+//       {path:"/working", Component: Working},
+//       {path:"/userFeed", Component: UserFeed},
+//       {path:"/investorfeed", Component: InvestorFeed},
+//       {path:"/mentorship", Component: ProfileCard}
+//     children: [
+//       { index: true, Component: Home },
 
   return <RouterProvider router={router} />;
 }
