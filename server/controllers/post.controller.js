@@ -1,8 +1,27 @@
-const Post = require("../models/post.model");
+require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
 const User = require("../models/user.model");
-const { uploadOnCloudinary } = require("../utils/cloudinary");
-const dotenv = require("dotenv");
-dotenv.config();
+const Post = require("../models/post.model");
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.COULDINARY_CLOUD_NAME,
+  api_key: process.env.COULDINARY_API_KEY,
+  api_secret: process.env.COULDINARY_API_SECERT
+});
+
+// Configure multer to use Cloudinary as storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'your_folder_name', // Specify the folder in Cloudinary where you want to upload files
+    allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'mp4'], // Specify the allowed file formats
+    transformation: [{ width: 500, height: 500, crop: 'limit' }] // Optional: Resize images to fit within 500x500 pixels
+  }
+});
+const upload = multer({ storage: storage });
 
 const handleError = (res, statusCode, message, error) => {
     return res.status(statusCode).json({ error: { message }, details: error });
@@ -37,6 +56,8 @@ const createPostController = async (req, res) => {
         return handleError(res, 500, "Error in Creating Post", error);
     }
 };
+
+
 
 const createPostWithMediaController = async (req, res) => {
     const { userId, caption, description } = req.body;
@@ -205,7 +226,6 @@ const likePostController = async (req, res) => {
 };
 
 module.exports = {
-    createPostController,
     createPostWithMediaController,
     getAllPostsOfCoFounderController,
     getAllPostsOfInvestorController,

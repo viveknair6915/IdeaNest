@@ -5,7 +5,7 @@ const upload = require("../middleware/multer.middleware")
 
 
 router.post('/posts', createPostController);
-router.post('/posts/with-media', upload.array('media', 5), createPostWithMediaController);
+router.post('/posts/with-media',  createPostWithMediaController);
 router.delete('/deletepost/:postId',deletePostController);
 router.get('/allposts',getAllPostsController)
 router.get('/posts/investors', getAllPostsOfInvestorController);

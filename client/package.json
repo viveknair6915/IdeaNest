@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -19,9 +20,14 @@
     "framer-motion": "^11.1.7",
     "install": "^0.13.0",
     "npm": "^10.5.2",
+=======
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.1.7",
+>>>>>>> 3dad9847200ddf3d708bdcb2a57ef9de1420b781
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
