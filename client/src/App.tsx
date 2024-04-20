@@ -10,7 +10,8 @@ import Login from './components/Login/Login'
 import Success from './components/SuccessPage/Succcess';
 import UserFeed from './components/UserFeed/UserFeed';
 import ProfileCard from './components/ProfileCard/Profile'
-// import SubscriptionPage from './components/Subscription/SubscriptionPage';
+import SubscriptionPage from './components/Subscription/SubscriptionPage';
+
 
 import './style.css'
 
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "/profile", Component: Profile},
-      {path:"/subscription", Component: Subscription},
+      {path:"/subscription", Component: SubscriptionPage},
       {path:"/payments", Component: Payments},
       {path:"/signup", Component: Signup},
       {path:"/login", Component: Login},

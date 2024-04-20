@@ -4,6 +4,7 @@ import axios from 'axios';
 export default function Post() {
     const [caption, setCaption] = useState("");
     const [description,setDescription] = useState("fjsfh")
+    const [link,setLink] = useState("")
 
    
 
@@ -11,7 +12,7 @@ export default function Post() {
         event.preventDefault();
     
         try {
-            const response = await axios.post('http://localhost:3000/post/posts/', {
+            const response = await axios.post('http://localhost:3000/post/posts/with-media', {
                 userId: '6624124171c333405843976a', // Replace 'your_user_id_here' with the actual user ID
                 caption: caption,
                 description: description
@@ -57,8 +58,18 @@ export default function Post() {
                                 rows={3}
                             ></textarea>
                         </div>
+                        <div className="flex ">
+                            <textarea
+                                className="mt-3 resize-none border border-solid border-slate-600 rounded p-2"
+                                value={link}
+                                onChange={e => setLink(e.target.value)}
+                                placeholder="Add Video link"
+                                cols={20}
+                                rows={1}
+                            ></textarea>
+                        </div>
                     </div>
-
+with-media
                     <div className="">
                         <div className="flex justify-between items-center">
                             <div>

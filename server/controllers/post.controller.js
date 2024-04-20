@@ -60,26 +60,17 @@ const createPostController = async (req, res) => {
 
 
 const createPostWithMediaController = async (req, res) => {
-    const { userId, caption, description } = req.body;
+    const { userId, caption, description, link } = req.body;
+    console.log("link is: " + link)
     try {
         const user = await User.findById(userId);
         if (!user) return userNotFound(res);
-
-        const mediaUrls = [];
-        if (req.files && req.files.length > 0) {
-            for (const file of req.files) {
-                const cloudinaryResponse = await uploadOnCloudinary(file.path);
-                if (cloudinaryResponse) {
-                    mediaUrls.push(cloudinaryResponse.secure_url);
-                }
-            }
-        }
 
         const newPost = new Post({
             user: userId,
             caption,
             description,
-            media: mediaUrls
+            link: link
         });
         await newPost.save();
         user.posts.push(newPost._id);

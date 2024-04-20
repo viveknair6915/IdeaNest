@@ -12,6 +12,7 @@ const [typeOfUser,setType] = useState("user")
 const navigate = useNavigate()
 
 async function onClickHandler(e: any) {
+
     e.preventDefault();
     try {
         const response = await axios.post("http://localhost:3000/auth/register", {
@@ -31,7 +32,8 @@ async function onClickHandler(e: any) {
         if (typeOfUser === "investor") {
             navigate("/investorfeed");
         } else {
-            navigate("/userfeed");
+            localStorage.setItem("showChat", "true")
+            window.location.href = "/userfeed"
         }
     } catch (error) {
         // Handle error, if any
