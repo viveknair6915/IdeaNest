@@ -88,7 +88,7 @@ const getAllPostsOfCoFounderController = async (req, res) => {
             totalPages,
             currentPage: parseInt(page),
             posts: cofounderPosts
-        });
+        });d
     } catch (error) {
         return handleError(res, 500, "Error in fetching co-founder posts", error);
     }
