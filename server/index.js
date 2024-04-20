@@ -22,11 +22,6 @@ const storeItems = new Map([
     [3, {priceInCents: 30000, name: "Annual Subscription to unlimited ideas"}]
 ]);
 
-app.use('/auth',authRouter)
-
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
 
 app.post('/paymenthandler', async (req, res) => {
     try {
