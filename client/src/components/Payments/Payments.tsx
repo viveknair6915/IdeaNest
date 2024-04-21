@@ -14,7 +14,7 @@ export default function Payments(props: any) {
         items: [{ id: 1, quantity: 1 }],
     };
     async function onClickHandlerW3(){
-        navigate("/working")
+        navigate("https://idea-nest-funding.vercel.app/")
     }
 
     async function onClickHandler() {
@@ -40,7 +40,9 @@ export default function Payments(props: any) {
                     <button className="px-6 py-2 text-white bg-bgPrimary" onClick={onClickHandler}>Web 2 Payment</button>
                 </div>
                 <div>
-                    <button className="px-6 py-2 text-white bg-bgPrimary" onClick={onClickHandlerW3}>Web 3 Payment</button>
+                    <a href="https://idea-nest-funding.vercel.app/">
+                    <button className="px-6 py-2 text-white bg-bgPrimary">Web 3 Payment</button>
+                    </a>
                 </div>
             </div>
         </div>
