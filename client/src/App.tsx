@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       { path: "/userFeed", Component: UserFeed },
       { path: "/investorfeed", Component: InvestorFeed },
       { path: "/mentorship", Component: ProfileCard},
-      { path: "/confrence", Component: Lobby },
+      { path: "/conference", Component: Lobby },
       { path: "/Room/:roomId", Component: Room },
 
     ],
