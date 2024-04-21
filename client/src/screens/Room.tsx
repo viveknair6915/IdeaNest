@@ -3,6 +3,7 @@ import ReactPlayer from "react-player";
 import peer from "../services/Peers";
 import { useSocket } from "../context/SocketProvider";
 import { useNavigate } from "react-router-dom";
+import './style.css';
 
 const RoomPage = () => {
   const navigate = useNavigate();
