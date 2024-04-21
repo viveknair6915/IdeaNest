@@ -1,7 +1,9 @@
 import React from 'react';
 import  "./profile.css";
+import { useNavigate } from 'react-router-dom';
 
 const ProfileCard = () => {
+  const navigate = useNavigate()
   return (
     <div className="container">
       <div className="box">
@@ -22,7 +24,11 @@ const ProfileCard = () => {
         </p>
         <div className="btns">
           {/* <button>Read More</button> */}
-          <button>contact</button>
+          <button onClick={()=>{
+            navigate("/conference")
+          }}>
+            Contact
+          </button>
         </div>
       </div>
     </div>
