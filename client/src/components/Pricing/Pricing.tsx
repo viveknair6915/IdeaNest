@@ -23,21 +23,7 @@ const Pricing = () => {
 
         <div className="-mx-4 flex flex-wrap justify-center">
           <div className="-mx-4 flex flex-wrap">
-            {/* <PricingCard
-              type="Personal"
-              price="$59"
-              subscription="year"
-              description="Perfect for using in a personal website or a client project."
-              buttonText="Choose Personal"
-              active={true}
-            >
-              <List>1 User</List>
-              <List>All UI components</List>
-              <List>Lifetime access</List>
-              <List>Free updates</List>
-              <List>Use on 1 (one) project</List>
-              <List>3 Months support</List>
-            </PricingCard> */}
+            
             <PricingCard
               type="Monthly"
               price="$100"
@@ -67,6 +53,21 @@ const Pricing = () => {
               <List>Ai User Recommendations</List>
               <List>Digital assests Transaction </List>
               {/* <List>1 Month support</List> */}
+            </PricingCard>
+            <PricingCard
+              type="Annually"
+              price="$900"
+              subscription="year"
+              description="Perfect for using in a personal website or a client project."
+              buttonText="Subscribe"
+              active={true}
+            >
+              <List>Unlimited User Ideas</List>
+              <List>Video Interaction</List>
+              <List>Unlimited access to ideas</List>
+              <List>Ai User Recommendations</List>
+              <List>Digital assests Transaction </List>
+              {/* <List>3 Months support</List> */}
             </PricingCard>
           </div>
         </div>
