@@ -7,7 +7,9 @@
 	--success-color: #5cb85c;
 	--error-color: #d9534f;
 }
-
+*{
+	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROGTJOer0StQ1rT9nxVt_jUeylyCkCnQed1zfsYWL1Uw&s");
+}
 ::-webkit-scrollbar {
     width: 12px;
 }
