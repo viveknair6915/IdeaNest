@@ -26,10 +26,11 @@ const router = createBrowserRouter([
     Component: RootLayout,
 
     errorElement: <ErrorPage />,
-
-
+    
+    children:[
+      { index: true, Component: Home },
       { path: "/profile", Component: Profile },
-      { path: "/subscription", Component: Subscription },
+      { path: "/subscription", Component: SubscriptionPage },
       { path: "/payments", Component: Payments },
       { path: "/signup", Component: Signup },
       { path: "/login", Component: Login },
@@ -37,18 +38,14 @@ const router = createBrowserRouter([
       { path: "/working", Component: Working },
       { path: "/userFeed", Component: UserFeed },
       { path: "/investorfeed", Component: InvestorFeed },
+      { path: "/mentorship", Component: ProfileCard},
       { path: "/confrence", Component: Lobby },
       { path: "/Room/:roomId", Component: Room },
 
     ],
   },
 
-  // { path: "*", Component: Root },
-  //as a children agar mai kara contact add ta fer appbar dikahi de raha hai seperately nahi
-  {
-    // path:"*",
-    // element:<Navigate to="/"/>,
-  },
+  
 ]);
 
 function App() {
