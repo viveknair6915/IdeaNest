@@ -8,7 +8,7 @@
 	--error-color: #d9534f;
 }
 *{
-	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROGTJOer0StQ1rT9nxVt_jUeylyCkCnQed1zfsYWL1Uw&s");
+	background-image: url("");
 }
 ::-webkit-scrollbar {
     width: 12px;
@@ -57,7 +57,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	background: url(../asset/about2.gif);
+	background: url(../asset/about5.gif);
 	margin: 20px;
 	
 	height: auto;
@@ -111,7 +111,7 @@ a:hover{
 	width:100vw;
 	/* background: url(../asset/about4.jpg); */
 	background: url(../asset/about5.gif);
-	border: 1px solid #fff;
+	border: 3px solid #fff;
 	border-radius: 39px;
 }
 
@@ -274,7 +274,7 @@ a:hover{
 	width:80%;
 	margin: 80px auto;
 	color: #fff;
-	background: url(../asset/about4.jpg);
+	background: url(../asset/about5.jpg);
 	border: solid 1px black;
 	border-radius: 39px;
 }
@@ -379,7 +379,7 @@ a:hover{
 }
 
 .btn-chat{
-	background-color:#000000;
+	background-color:#020617;
 	height:50px;
 	padding-top:10px;
 	padding-left:25px;

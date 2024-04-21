@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSocket } from "../context/SocketProvider";
-import './style.css';
+import '../style.css'
+
 const Lobby = () => {
   const [email, setEmail] = useState("");
   const [room, setRoom] = useState("");
