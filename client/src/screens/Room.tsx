@@ -13,7 +13,7 @@ const RoomPage = () => {
   const [remoteStream, setRemoteStream] = useState();
   const [flag, setFlag] = useState(0);
 
-  const handleUserJoined = useCallback(({ email, id }) => {
+  const handleUserJoined = useCallback(({ email, id }: any) => {
     console.log(`Email ${email} joined room`);
     setRemoteSocketId(id);
   }, []);
@@ -115,45 +115,55 @@ const RoomPage = () => {
   ]);
 
   return (
-    <div>
-      <h1>Room Page</h1>
-      <h4>
+    <div className="flex justify-center items-center flex-col">
+      <h1 className="text-white font-bold font-primaryFont text-6xl">
+         <i>Room Page</i>
+        </h1>
+      <h4 className="text-white text-2xl">
         {remoteSocketId
           ? "Live Stream"
           : "Please wait for the second person to join"}
       </h4>
-      {myStream && <button onClick={sendStreams}>Join Confrence</button>}
-      {remoteSocketId && <button onClick={handleCallUser}>Start Call</button>}
-      {myStream && (
+    <div className="flex justify-center items-center">
+    {myStream && <button className="text-white bg-bgPrimary px-4 py-2 rounded-2xl mb-2 mx-4" onClick={sendStreams}>Join Confrence</button>}
+      {remoteSocketId && <button className="text-white bg-bgPrimary px-4 py-2 rounded-2xl mb-2" onClick={handleCallUser}>Start Call</button>}
+    </div>
+     <div className="flex justify-center items-center">
+     {myStream && (
         <>
-          <h1>Host</h1>
+         <div className="flex flex-col justify-between items-center mx-5">
+         <h1 className="text-white text-2xl">Host</h1>
           <ReactPlayer
             playing
             muted
-            height="100px"
-            width="200px"
+            height="500px"
+            width="500px"
             url={myStream}
           />
+         </div>
         </>
       )}
       {remoteStream && (
         <>
-          <h1>Participant</h1>
+         <div className="flex flex-col justify-center items-center">
+         <h1 className="text-white text-2xl">Participant</h1>
           <ReactPlayer
             playing
             muted
-            height="100px"
-            width="200px"
+            height="500px"
+            width="500px"
             url={remoteStream}
           />
+         </div>
         </>
       )}
+     </div>
       {flag === 1 && (
         <button
           onClick={() => {
             window.location.reload();
           }}
-        >
+        className="text-white text-2xl bg-bgPrimary px-6 rounded-2xl">
           Leave Call
         </button>
       )}

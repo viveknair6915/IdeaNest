@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface Post {
     _id: string;
@@ -8,6 +9,7 @@ interface Post {
 }
 
 export default function RenderPosts() {
+    const navigate = useNavigate()
     const [posts, setPosts] = useState<Post[]>([]);
     const [skip, setSkip] = useState(0);
     const limit = 6;
@@ -45,30 +47,30 @@ export default function RenderPosts() {
         fetchPosts();
     }, [skip]);
 
-    const handleCreatePost = (mediaSelected: boolean) => {
-        const userId = ""; // Set the user ID
-        const caption = ""; // Get the caption value from input fields
-        const description = ""; // Get the description value from input fields
-        const link = ""; // Get the link if media is selected
+    // const handleCreatePost = (mediaSelected: boolean) => {
+    //     const userId = ""; // Set the user ID
+    //     const caption = ""; // Get the caption value from input fields
+    //     const description = ""; // Get the description value from input fields
+    //     const link = ""; // Get the link if media is selected
 
-        const postData = {
-            userId,
-            caption,
-            description,
-            ...(mediaSelected && { link }) // Add link to postData if media is selected
-        };
+    //     const postData = {
+    //         userId,
+    //         caption,
+    //         description,
+    //         ...(mediaSelected && { link }) // Add link to postData if media is selected
+    //     };
 
-        const route = mediaSelected ? "/posts/with-media" : "/posts";
+    //     const route = mediaSelected ? "/posts/with-media" : "/posts";
 
-        axios.post(`http://localhost:3000${route}`, postData)
-            .then((response) => {
-                console.log("Post created successfully:", response.data.post);
-                // Optionally, you can update state with the newly created post
-            })
-            .catch((error) => {
-                console.error("Error creating post:", error);
-            });
-    };
+    //     axios.post(`http://localhost:3000${route}`, postData)
+    //         .then((response) => {
+    //             console.log("Post created successfully:", response.data.post);
+    //             // Optionally, you can update state with the newly created post
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error creating post:", error);
+    //         });
+    // };
 
     return (
         <div className="mt-5 flex justify-center items-center bg-bgblue ">
@@ -87,7 +89,9 @@ export default function RenderPosts() {
                             
                         </div>
                         <div className="flex flex-row justify-center items-center mx-5">
-                            <button className="bg-bgPrimary px-8 mx-4 rounded-xl">
+                            <button onClick={()=>{
+                                navigate('/conference')
+                            }} className="bg-bgPrimary px-8 mx-4 rounded-xl">
                                 Contact
                             </button>
                             <button className="bg-bgPrimary px-8 rounded-xl">
