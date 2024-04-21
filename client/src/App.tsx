@@ -11,14 +11,15 @@ import Success from "./components/SuccessPage/Succcess";
 import UserFeed from "./components/UserFeed/UserFeed";
 import Lobby from "./screens/Lobby";
 import Room from "./screens/Room";
+// import SubscriptionPage from './components/Subscription/SubscriptionPage';
 
 import "./style.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Working from "./components/WorkingOnItPage/Working";
 import { InvestorFeed } from "./components/InvestorFeed/InvestorFeed";
-import ProfileCard from "./components/ProfileCard/Profile";
-import SubscriptionPage from "./components/Subscription/SubscriptionPage";
+//import ProfileCard from "./components/ProfileCard/Profile";
+//import SubscriptionPage from "./components/Subscription/SubscriptionPage";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
 children: [
   { index: true, Component: Home },
   { path: "/profile", Component: Profile},
-  {path:"/subscription", Component: SubscriptionPage},
+  {path:"/subscription", Component: Subscription},
   {path:"/payments", Component: Payments},
   {path:"/signup", Component: Signup},
   {path:"/login", Component: Login},
@@ -38,7 +39,9 @@ children: [
   {path:"/working", Component: Working},
   {path:"/userFeed", Component: UserFeed},
   {path:"/investorfeed", Component: InvestorFeed},
-  {path:"/mentorship", Component: ProfileCard}
+  {path:"/mentorship", Component: Profile},
+  {path:"/Confrence", Component: Lobby},
+  {path:"/Room/:roomID", Component: Room},
 ],
 
 },
