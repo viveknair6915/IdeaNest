@@ -34,9 +34,11 @@ export default function Post() {
         <>
             <div className="mx-4 my-10">
                 <div className="rounded-xl shadow-2xl justify-evenly items-stretch flex-col w-80 h-70 p-4 ">
-                    <div className="flex justify-between mb-14 flex-col">
-                        <div className="w-8 h-8 rounded-2xl">
-                            <img className="rounded" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Profile" />
+                    <div className="flex justify-center items-center flex-col mb-14">
+                        
+                        <div className="mb-8 w-12 h-12 rounded-2xl">
+                            <img className="rounded-2xl" src="https://avatars.githubusercontent.com/u/130065975?v=4" alt="Profile" />
+                           
                         </div>
                         <div className="flex mb-3">
                             <textarea
@@ -48,6 +50,7 @@ export default function Post() {
                                 rows={5}
                             ></textarea>
                         </div>
+                      
                         <div className="flex ">
                             <textarea
                                 className="mt-3 resize-none border border-solid border-slate-600 rounded p-2"
