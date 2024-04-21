@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface Post {
     _id: string;
@@ -8,6 +9,7 @@ interface Post {
 }
 
 export default function RenderPosts() {
+    const navigate = useNavigate()
     const [posts, setPosts] = useState<Post[]>([]);
     const [skip, setSkip] = useState(0);
     const limit = 6;
@@ -19,7 +21,7 @@ export default function RenderPosts() {
     }, []);
 
     const fetchPosts = () => {
-        axios.get(`http://localhost:3000/posts?limit=${limit}&skip=${skip}`)
+        axios.get(`http://localhost:3000/post/posts/cofounders?limit=${limit}&skip=${skip}`)
             .then((response) => {
                 setPosts((prevPosts) => [...prevPosts, ...response.data.posts]);
             })
@@ -27,7 +29,7 @@ export default function RenderPosts() {
                 console.error("Error:", error);
             });
     };
-
+ 
     const handleScroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
             setSkip((prevSkip) => prevSkip + limit);
@@ -45,36 +47,35 @@ export default function RenderPosts() {
         fetchPosts();
     }, [skip]);
 
-    const handleCreatePost = (mediaSelected: boolean) => {
-        const userId = ""; // Set the user ID
-        const caption = ""; // Get the caption value from input fields
-        const description = ""; // Get the description value from input fields
-        const link = ""; // Get the link if media is selected
+    // const handleCreatePost = (mediaSelected: boolean) => {
+    //     const userId = ""; // Set the user ID
+    //     const caption = ""; // Get the caption value from input fields
+    //     const description = ""; // Get the description value from input fields
+    //     const link = ""; // Get the link if media is selected
 
-        const postData = {
-            userId,
-            caption,
-            description,
-            ...(mediaSelected && { link }) // Add link to postData if media is selected
-        };
+    //     const postData = {
+    //         userId,
+    //         caption,
+    //         description,
+    //         ...(mediaSelected && { link }) // Add link to postData if media is selected
+    //     };
 
-        const route = mediaSelected ? "/posts/with-media" : "/posts";
+    //     const route = mediaSelected ? "/posts/with-media" : "/posts";
 
-        axios.post(`http://localhost:3000${route}`, postData)
-            .then((response) => {
-                console.log("Post created successfully:", response.data.post);
-                // Optionally, you can update state with the newly created post
-            })
-            .catch((error) => {
-                console.error("Error creating post:", error);
-            });
-    };
+    //     axios.post(`http://localhost:3000${route}`, postData)
+    //         .then((response) => {
+    //             console.log("Post created successfully:", response.data.post);
+    //             // Optionally, you can update state with the newly created post
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error creating post:", error);
+    //         });
+    // };
 
     return (
-        <div className="mt-5 flex justify-center items-center">
+        <div className="mt-5 flex justify-center items-center bg-bgblue ">
             <div className="w-96">
-                <button onClick={() => handleCreatePost(false)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Create Post without Media</button>
-                <button onClick={() => handleCreatePost(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Create Post with Media</button>
+             
                 {posts.map((post) => (
                     <div key={post._id} className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-4">
                         <div className="md:flex">
@@ -85,8 +86,20 @@ export default function RenderPosts() {
                                 <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{post.caption}</div>
                                 <p className="mt-2 text-gray-500">{post.description}</p>
                             </div>
+                            
+                        </div>
+                        <div className="flex flex-row justify-center items-center mx-5">
+                            <button onClick={()=>{
+                                navigate('/conference')
+                            }} className="bg-bgPrimary px-8 mx-4 rounded-xl">
+                                Contact
+                            </button>
+                            <button className="bg-bgPrimary px-8 rounded-xl">
+                                Like
+                            </button>
                         </div>
                     </div>
+                    
                 ))}
             </div>
         </div>

@@ -35,29 +35,33 @@ const Lobby = () => {
 
   return (
     <div className="main">
-      <div className="container-c">
-      <h1 className="head">Lobby</h1>
+      <div className="container-c flex justify-center items-center flex-col h-screen">
+      <h1 className="head text-white text-6xl font-primaryFont font-bold">
+        <i>Contact the Co-Founder</i>
+        </h1>
       <form className="formi" onSubmit={handleSubmitForm}>
-        <label htmlFor="email" className="email">Email ID</label>
+        <label htmlFor="email" className="email text-white">Email ID: </label> <br />
         
         <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="in"
+          className="in border border-solid border-black"
         />
         <br />
-        <label htmlFor="room">Room Number</label>
+        <label className="text-white" htmlFor="room">Room Number: </label> <br />
         <input
           type="text"
           id="room"
           value={room}
           onChange={(e) => setRoom(e.target.value)}
-          className="in"
+          className="in border border-solid border-black"
         />
         <br />
-        <button className="jn">Join</button>
+        <div className="flex justify-center items-center">
+        <button className="jn text-white">Join</button>
+        </div>
       </form>
       </div>
     </div>
