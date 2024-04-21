@@ -5,9 +5,6 @@ import { BsInfoCircle } from "react-icons/bs";
 
 import { TransactionContext } from "../context/TransactionContext";
 import { shortenAddress } from "../utils/shortenAddress";
-import  Loader  from "./Loader";
-
-const companyCommonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
   <input
@@ -34,20 +31,20 @@ const Welcome = () => {
   };
 
   return (
-    <div className="flex w-full justify-center items-center">
-      <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
-        <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
-          <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
-            Send Crypto <br /> across the world
+    <div className="min-h-screen flex flex-col justify-center items-center blue-glassmorphism">
+      <div className="flex flex-col md:flex-row justify-between p-10 md:p-20 md:py-12 px-4 md:px-0 w-full max-w-6xl">
+        <div className="flex flex-1 flex-col md:mr-10">
+          <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1 mb-5">
+            IDEANEST<br></br> Send Crypto across the world
           </h1>
-          <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-            Explore the crypto world. Buy and sell cryptocurrencies easily on Krypto.
+          <p className="text-left text-white font-light md:w-9/12 w-full text-base mb-8">
+            Get Funding From INVESTOR Or Transfer Your DIGITAL ASSETS
           </p>
           {!currentAccount && (
             <button
               type="button"
               onClick={connectWallet}
-              className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+              className="flex items-center bg-[#2952e3] py-3 px-5 rounded-full cursor-pointer hover:bg-[#2546bd] mb-8"
             >
               <AiFillPlayCircle className="text-white mr-2" />
               <p className="text-white text-base font-semibold">
@@ -56,44 +53,46 @@ const Welcome = () => {
             </button>
           )}
 
-          <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
-            <div className={`rounded-tl-2xl ${companyCommonStyles}`}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+            <div className="min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white rounded-tl-2xl">
               Reliability
             </div>
-            <div className={companyCommonStyles}>Security</div>
-            <div className={`sm:rounded-tr-2xl ${companyCommonStyles}`}>
+            <div className="min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white">
+              Security
+            </div>
+            <div className="min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white sm:rounded-tr-2xl">
               Ethereum
             </div>
-            <div className={`sm:rounded-bl-2xl ${companyCommonStyles}`}>
+            <div className="min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white sm:rounded-bl-2xl">
               Web 3.0
             </div>
-            <div className={companyCommonStyles}>Low Fees</div>
-            <div className={`rounded-br-2xl ${companyCommonStyles}`}>
+            <div className="min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white">
+              Low Fees
+            </div>
+            <div className="min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white rounded-br-2xl">
               Blockchain
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
-          <div className="p-3 flex justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card .white-glassmorphism ">
-            <div className="flex justify-between flex-col w-full h-full">
-              <div className="flex justify-between items-start">
-                <div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
-                  <SiEthereum fontSize={21} color="#fff" />
-                </div>
-                <BsInfoCircle fontSize={17} color="#fff" />
+        <div className="flex flex-col flex-1 items-center justify-start w-full mt-10 md:mt-0">
+          <div className="p-3 flex flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card white-glassmorphism">
+            <div className="flex justify-between items-start h-full">
+              <div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
+                <SiEthereum fontSize={21} color="#fff" />
               </div>
-              <div>
-                <p className="text-white font-light text-sm">
-                  {shortenAddress(currentAccount)}
-                </p>
-                <p className="text-white font-semibold text-lg mt-1">
-                  Ethereum
-                </p>
-              </div>
+              <BsInfoCircle fontSize={17} color="#fff" />
+            </div>
+            <div className="flex flex-col items-start">
+              <p className="text-white font-light text-sm mt-2">
+                {shortenAddress(currentAccount)}
+              </p>
+              <p className="text-white font-semibold text-lg mt-1">
+                Ethereum
+              </p>
             </div>
           </div>
-          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center white-glassmorphism">
             <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} />
             <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
             <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
