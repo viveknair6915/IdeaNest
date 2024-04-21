@@ -42,7 +42,7 @@ async function onClickHandler(e: any) {
 }
 
     return (
-        <div className="bg-cover bg-center h-screen flex flex-row bg-bgblue" >
+        <div className="bg-cover bg-center h-screen flex flex-row " >
             <div className="w-1/2 h-full flex justify-center items-center flex-col">
                 <h1 className="text-4xl text-white font-primaryFont">Hello</h1>
                 <h1 className="text-2xl text-white font-primaryFont">Already Have an account</h1>
