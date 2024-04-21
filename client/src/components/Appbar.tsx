@@ -1,5 +1,13 @@
 import { NavLink } from "react-router-dom"
+import { useEffect, useState } from "react";
+
 export default function Appbar(){
+    const [showChat, setShowChat] = useState(false);
+
+    useEffect(() => {
+        const showChatFromLocalStorage = localStorage.getItem("showChat");
+        setShowChat(showChatFromLocalStorage === "true");
+    }, []);
     return(
         <>
         <div className="flex justify-between items-center py-4 px-6 bg-bgPrimary">
@@ -8,16 +16,16 @@ export default function Appbar(){
             </div>
             <div>
                 <ul className="font-abc text-2xl flex justify-evenly items-center space-x-20">
-                    {/* <li className="bg-bgPrimaryBg rounded-lg p-1 hover:transform hover:scale-110 text-white hover:text-white transition-all">
-                    
-        <NavLink to="/">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-  <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
-  <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
-</svg> 
-        </NavLink>
-
-                        </li> */}
+                {showChat && (
+                            <li className="bg-bgPrimaryBg rounded-lg p-1 hover:transform hover:scale-110 text-white hover:text-white transition-all">
+                                <NavLink to="/chat">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                        <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                        <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                                    </svg> 
+                                </NavLink>
+                            </li>
+                        )}
                     <li className=" rounded-lg p-1 hover:transform  hover:scale-110 text-white hover:text-white transition-all">
                     
                 <NavLink to="/profile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -35,14 +43,14 @@ export default function Appbar(){
                     </NavLink>
 
                     </li>
-                    <li className="bg-bgPrimaryBg rounded-lg p-1 hover:transform  hover:scale-110 text-white hover:text-white transition-all">
+                    {/* <li className="bg-bgPrimaryBg rounded-lg p-1 hover:transform  hover:scale-110 text-white hover:text-white transition-all">
                    <NavLink to="/signup">
                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
   <path fillRule="evenodd" d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z" clipRule="evenodd" />
 </svg>
                    </NavLink>
 
-                    </li>
+                    </li> */}
                     <button onClick={(e)=>{
                         e.preventDefault()
                     }} className="bg-bgPrimaryBg text-white font-primaryFont font-bold  text-lg rounded px-6 py-3 flex items-center hover:px-10 hover:shadow-lg transition-all duration-300 ease-in-out"> <NavLink to="/subscription">

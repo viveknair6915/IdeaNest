@@ -1,38 +1,41 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+interface Post {
+    _id: string;
+    caption: string;
+    description: string;
+    // Add other properties if needed
+}
+
 export default function RenderPosts() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]); // Specify the type as Post[]
     const [skip, setSkip] = useState(0);
     const limit = 6;
 
     useEffect(() => {
-
-        if(skip!=0){
+        if (skip !== 0) {
             fetchPosts();
         }
     }, []);
 
     const fetchPosts = () => {
-        axios.get(`https://dummyjson.com/posts?limit=${limit}&skip=${skip}`)
+        axios.get(`http://localhost:3000/post/posts/cofounders`)
             .then((response) => {
-                setPosts((prevPosts): any => [...prevPosts, ...response.data.posts]);
-                console.log(posts)
+                setPosts((prevPosts) => [...prevPosts, ...response.data.posts]);
+                console.log(posts);
             })
             .catch((error) => {
                 console.error("Error:", error);
             });
     };
 
-    // Function to handle scrolling and fetching new posts
     const handleScroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-            // User has scrolled to the bottom
-            setSkip((prevSkip) => prevSkip + limit); // Increment skip by limit
+            setSkip((prevSkip) => prevSkip + limit);
         }
     };
 
-    // Listen for scroll events
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -40,19 +43,17 @@ export default function RenderPosts() {
         };
     }, []);
 
-    // Fetch new posts when skip changes
     useEffect(() => {
         fetchPosts();
     }, [skip]);
 
     return (
-        <div className="">
-            <div className="shadow-2xl">
-                {posts.map((post: any) => (
-                    <div className="rounded shadow-2xl mb-2 mt-1" key={post.id}>
-                        <h1 className="font-bold font-primaryFont text-xl">{post.id}</h1>
-                        <h1 className="font-bold font-primaryFont text-4xl">{post.title}</h1>
-                        <p>{post.body}</p>
+        <div className="mt-5 flex justify-center items-center">
+            <div className="w-60 h-60 flex flex-col">
+                {posts.map((post) => (
+                    <div className="rounded shadow-2xl mb-5 mt-1 p-8 border border-solid border-black" key={post._id}>
+                        <h1 className="font-bold font-primaryFont text-xl">{post.caption}</h1>
+                        <p>{post.description}</p>
                     </div>
                 ))}
             </div>

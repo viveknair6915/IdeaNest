@@ -48,23 +48,13 @@ const loginController = async (req, res, next) => {
             return res.status(401).json({ error: "Wrong Password!" });
         }
 
-        // Verify JWT token
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-            if (err) {
-                return res.status(401).json({ error: "Invalid Token!" });
-            } else {
-                // Set token in HTTPOnly cookie
-                res.cookie("token", token, { httpOnly: true, sameSite: "none", secure: true });
-
-                // Send user data and token in response
-                res.status(200).json({ user, token });
-            }
-        });
+        // Send user data and token in response
+        res.status(200).json({ user });
     } catch (error) {
         next(error);
     }
 };
+
 
 const logoutController = async (req, res, next) => {
     try {
