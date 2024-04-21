@@ -1,4 +1,4 @@
-
+import { NavLink } from "react-router-dom";
 
 const Pricing = () => {
   return (
@@ -107,8 +107,8 @@ const PricingCard = ({
             {description}
           </p>
           <div className="mb-9 flex flex-col gap-[14px]">{children}</div>
-          <a
-            href="/#"
+          <NavLink
+            to="/payments"
             className={`${
               active
                 ? "block w-full rounded-md border border-primary bg-primary p-3 text-center text-base font-medium text-black transition hover:bg-opacity-90"
@@ -116,7 +116,7 @@ const PricingCard = ({
             } `}
           >
             {buttonText}
-          </a>
+          </NavLink>
           <div>
             <span className="absolute right-0 top-7 z-[-1]">
               <svg

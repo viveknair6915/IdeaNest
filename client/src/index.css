@@ -29,10 +29,7 @@
 
 
   .blue-glassmorphism {
-    background: linear-gradient(to right, black, #0c146b, #b00c1d);
-    /* Other styles */
-    width: 100%;
-    height: 200px;
+    background-color: #020617;
   }
 
   .blue-navbar {
