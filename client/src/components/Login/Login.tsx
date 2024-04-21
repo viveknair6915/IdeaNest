@@ -35,7 +35,7 @@ export default function Login() {
     }
 
     return (
-        <div className="bg-cover bg-center h-screen flex flex-row" style={{backgroundImage: "url('signup.gif')"}}>
+        <div className="bg-cover bg-center h-screen flex flex-row" >
             <div className="w-1/2 h-full flex justify-center items-center flex-col">
                 <h1 className="text-4xl text-white font-primaryFont">Hello</h1>
                 <h1 className="text-2xl text-white font-primaryFont">Not a User? Create an Account Now!</h1>
