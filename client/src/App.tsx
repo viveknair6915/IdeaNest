@@ -24,8 +24,8 @@ const router = createBrowserRouter([
     Component: RootLayout,
 
     errorElement: <ErrorPage />,
-
-
+children:[
+    { index: true, Component: Home },
       { path: "/profile", Component: Profile },
       { path: "/subscription", Component: Subscription },
       { path: "/payments", Component: Payments },
@@ -38,15 +38,9 @@ const router = createBrowserRouter([
       { path: "/confrence", Component: Lobby },
       { path: "/Room/:roomId", Component: Room },
 
-    ],
+],
   },
 
-  // { path: "*", Component: Root },
-  //as a children agar mai kara contact add ta fer appbar dikahi de raha hai seperately nahi
-  {
-    // path:"*",
-    // element:<Navigate to="/"/>,
-  },
 ]);
 
 function App() {
