@@ -4,7 +4,7 @@ const Pricing = () => {
   return (
     <section className="relative z-10 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
       <div className="container mx-auto">
-        <div className="-mx-4 flex flex-wrap">
+        {/* <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-[60px] max-w-[510px] text-center">
               <span className="mb-2 block text-lg font-semibold text-primary">
@@ -19,11 +19,11 @@ const Pricing = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="-mx-4 flex flex-wrap justify-center">
           <div className="-mx-4 flex flex-wrap">
-            <PricingCard
+            {/* <PricingCard
               type="Personal"
               price="$59"
               subscription="year"
@@ -37,36 +37,36 @@ const Pricing = () => {
               <List>Free updates</List>
               <List>Use on 1 (one) project</List>
               <List>3 Months support</List>
-            </PricingCard>
+            </PricingCard> */}
             <PricingCard
-              type="Business"
-              price="$199"
+              type="Monthly"
+              price="$100"
               subscription="year"
               description="Perfect for using in a personal website or a client project."
-              buttonText="Choose Business"
+              buttonText="Subscribe"
               active={true}
             >
-              <List>5 User</List>
-              <List>All UI components</List>
-              <List>Lifetime access</List>
-              <List>Free updates</List>
-              <List>Use on31 (Three) project</List>
-              <List>4 Months support</List>
+              <List>Unlimited User Ideas</List>
+              <List>Video Interaction</List>
+              <List>Unlimited access to ideas</List>
+              <List>Ai User Recommendations</List>
+              <List>Digital assests Transaction </List>
+              {/* <List>4 Months support</List> */}
             </PricingCard>
             <PricingCard
-              type="Professional"
-              price="$256"
+              type="3 Months"
+              price="$250"
               subscription="year"
               description="Perfect for using in a personal website or a client project."
-              buttonText="Choose Professional"
+              buttonText="Subscribe"
               active={true}
             >
-              <List>Unlimited User</List>
-              <List>All UI components</List>
-              <List>Lifetime access</List>
-              <List>Free updates</List>
-              <List>Unlimited project</List>
-              <List>12 Months support</List>
+              <List>Unlimited User Ideas</List>
+              <List>Video Interaction</List>
+              <List>Unlimited access to ideas</List>
+              <List>Ai User Recommendations</List>
+              <List>Digital assests Transaction </List>
+              {/* <List>1 Month support</List> */}
             </PricingCard>
           </div>
         </div>
@@ -93,6 +93,9 @@ const PricingCard = ({
           <span className="mb-3 block text-lg font-semibold text-primary">
             {type}
           </span>
+          <span className="mb-3 block text-lg font-bold text-primary">
+            {price}
+          </span>
           <h2 className="mb-5 text-[42px] font-bold text-dark dark:text-white">
             {price}
             <span className="text-base font-medium text-body-color dark:text-dark-6">
@@ -105,10 +108,10 @@ const PricingCard = ({
           <div className="mb-9 flex flex-col gap-[14px]">{children}</div>
           <a
             href="/#"
-            className={` ${
+            className={`${
               active
-                ? "block w-full rounded-md border border-primary bg-primary p-3 text-center text-base font-medium text-white transition hover:bg-opacity-90"
-                : "block w-full rounded-md border border-stroke bg-transparent p-3 text-center text-base font-medium text-primary transition hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3"
+                ? "block w-full rounded-md border border-primary bg-primary p-3 text-center text-base font-medium text-black transition hover:bg-opacity-90"
+                : "block w-full rounded-md border border-stroke bg-transparent p-3 text-center text-base font-medium text-primary transition hover:border-primary hover:bg-primary hover:text-black dark:border-dark-3"
             } `}
           >
             {buttonText}
