@@ -1,16 +1,20 @@
-import { useEffect } from "react";
-import RootLayout from "./layout/RootLayout";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import Subscription from "./components/Subscription/Subscription";
-import ErrorPage from "./components/Error/Error";
-import Payments from "./components/Payments/Payments";
-import Signup from "./components/SignUp/Signup";
-import Login from "./components/Login/Login";
-import Success from "./components/SuccessPage/Succcess";
-import UserFeed from "./components/UserFeed/UserFeed";
-import Lobby from "./screens/Lobby";
-import Room from "./screens/Room";
+
+import { useEffect } from 'react';
+import RootLayout from './layout/RootLayout';
+import Home from './components/Home';
+import Profile from './components/Profile';
+// import Subscription from './components/Subscription/Subscription';
+import ErrorPage from './components/Error/Error';
+import Payments from './components/Payments/Payments';
+import Signup from './components/SignUp/Signup';
+import Login from './components/Login/Login'
+import Success from './components/SuccessPage/Succcess';
+import UserFeed from './components/UserFeed/UserFeed';
+// import Welcome from './components/Welcome.jsx'
+// import SubscriptionPage from './components/Subscription/SubscriptionPage';
+
+
+
 
 import "./style.css";
 
@@ -19,7 +23,8 @@ import Working from "./components/WorkingOnItPage/Working";
 import { InvestorFeed } from "./components/InvestorFeed/InvestorFeed";
 import ProfileCard from "./components/ProfileCard/Profile";
 import SubscriptionPage from "./components/Subscription/SubscriptionPage";
-
+import Lobby from './screens/Lobby';
+import Room from './screens/Room'
 const router = createBrowserRouter([
   {
     path: "/",
