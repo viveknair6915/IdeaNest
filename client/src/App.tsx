@@ -17,6 +17,8 @@ import "./style.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Working from "./components/WorkingOnItPage/Working";
 import { InvestorFeed } from "./components/InvestorFeed/InvestorFeed";
+import ProfileCard from "./components/ProfileCard/Profile";
+import SubscriptionPage from "./components/Subscription/SubscriptionPage";
 
 const router = createBrowserRouter([
   {
@@ -25,28 +27,21 @@ const router = createBrowserRouter([
 
     errorElement: <ErrorPage />,
 
+children: [
+  { index: true, Component: Home },
+  { path: "/profile", Component: Profile},
+  {path:"/subscription", Component: SubscriptionPage},
+  {path:"/payments", Component: Payments},
+  {path:"/signup", Component: Signup},
+  {path:"/login", Component: Login},
+  {path:"/success", Component: Success},
+  {path:"/working", Component: Working},
+  {path:"/userFeed", Component: UserFeed},
+  {path:"/investorfeed", Component: InvestorFeed},
+  {path:"/mentorship", Component: ProfileCard}
+],
 
-      { path: "/profile", Component: Profile },
-      { path: "/subscription", Component: Subscription },
-      { path: "/payments", Component: Payments },
-      { path: "/signup", Component: Signup },
-      { path: "/login", Component: Login },
-      { path: "/success", Component: Success },
-      { path: "/working", Component: Working },
-      { path: "/userFeed", Component: UserFeed },
-      { path: "/investorfeed", Component: InvestorFeed },
-      { path: "/confrence", Component: Lobby },
-      { path: "/Room/:roomId", Component: Room },
-
-    ],
-  },
-
-  // { path: "*", Component: Root },
-  //as a children agar mai kara contact add ta fer appbar dikahi de raha hai seperately nahi
-  {
-    // path:"*",
-    // element:<Navigate to="/"/>,
-  },
+},
 ]);
 
 function App() {
