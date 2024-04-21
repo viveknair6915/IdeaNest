@@ -23,30 +23,34 @@ import Working from "./components/WorkingOnItPage/Working";
 import { InvestorFeed } from "./components/InvestorFeed/InvestorFeed";
 import ProfileCard from "./components/ProfileCard/Profile";
 import SubscriptionPage from "./components/Subscription/SubscriptionPage";
-
+import Lobby from './screens/Lobby';
+import Room from './screens/Room'
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
 
     errorElement: <ErrorPage />,
+    
+    children:[
+      { index: true, Component: Home },
+      { path: "/profile", Component: Profile },
+      { path: "/subscription", Component: SubscriptionPage },
+      { path: "/payments", Component: Payments },
+      { path: "/signup", Component: Signup },
+      { path: "/login", Component: Login },
+      { path: "/success", Component: Success },
+      { path: "/working", Component: Working },
+      { path: "/userFeed", Component: UserFeed },
+      { path: "/investorfeed", Component: InvestorFeed },
+      { path: "/mentorship", Component: ProfileCard},
+      { path: "/conference", Component: Lobby },
+      { path: "/Room/:roomId", Component: Room },
 
-children: [
-  { index: true, Component: Home },
-  { path: "/profile", Component: Profile},
-  {path:"/subscription", Component: SubscriptionPage},
-  {path:"/payments", Component: Payments},
-  {path:"/signup", Component: Signup},
-  {path:"/login", Component: Login},
-  {path:"/success", Component: Success},
-  {path:"/working", Component: Working},
-  {path:"/userFeed", Component: UserFeed},
-  {path:"/investorfeed", Component: InvestorFeed},
-  {path:"/mentorship", Component: ProfileCard}
-  // {path:"/Welcome", Component: Welcome}
-],
+    ],
+  },
 
-},
+  
 ]);
 
 function App() {
