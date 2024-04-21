@@ -9,6 +9,7 @@ import Signup from './components/SignUp/Signup';
 import Login from './components/Login/Login'
 import Success from './components/SuccessPage/Succcess';
 import UserFeed from './components/UserFeed/UserFeed';
+// import Welcome from './components/Welcome.jsx'
 // import SubscriptionPage from './components/Subscription/SubscriptionPage';
 
 import './style.css'
@@ -39,7 +40,8 @@ const router = createBrowserRouter([
       {path:"/success", Component: Success},
       {path:"/working", Component: Working},
       {path:"/userFeed", Component: UserFeed},
-      {path:"/investorfeed", Component: InvestorFeed}
+      {path:"/investorfeed", Component: InvestorFeed},
+      // {path:"/Welcome", Component: Welcome}
     ],
   },
 
@@ -61,12 +63,10 @@ function App() {
     const redirectionDone = localStorage.getItem('redirectionDone');
     
     if (!visitedBefore) {
-        // If not visited before, set the flag and redirect to signup page
         localStorage.setItem('visitedBefore', 'true');
         localStorage.setItem('redirectionDone', 'true');
-        window.location.href = '/signup'; // Redirect to signup page
+        window.location.href = '/signup'; 
     } else if (visitedBefore === 'true' && !redirectionDone) {
-        // If visited before but redirection not done, set the flag and redirect to root page
         localStorage.setItem('redirectionDone', 'true');
         window.location.href = '/';
     }
