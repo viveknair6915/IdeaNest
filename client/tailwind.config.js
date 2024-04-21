@@ -65,7 +65,9 @@ export default {
         selectColor: '#FDA228',
         bgPrimary: '#666BED',
         fgPrimary: '#080808',
-        bgPrimaryBg: '#8588F1'
+        btnclr:'#0B93AE',
+        bgPrimaryBg: '#8588F1',
+        bgblue:'#020617'
       },
     },
   },
