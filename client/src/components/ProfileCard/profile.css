@@ -9,12 +9,12 @@
   background: #34a1eb;
   color: #fff;
 }
-html,body{
+/* html,body{
   display: grid;
   height: 100%;
   place-items: center;
   background: white;
-}
+} */
 .container{
   max-width: 1100px;
   display: flex;

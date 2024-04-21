@@ -7,21 +7,27 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    async function onClickHandler(e: any) {
+    async function onClickHandler(e:any) {
         e.preventDefault();
         try {
+            console.log(email)
+            console.log(password)
             const response = await axios.post("http://localhost:3000/auth/login", {
                 email: email,
                 password: password
             });
             
-            const token = response.data.token;
+            const user = response.data.user;
+            const typeOfUser = user.typeOfUser;
           
-            // Save the token in local storage
-            localStorage.setItem("token", token);
-
-            // Redirect the user to the appropriate page
-            navigate("/userfeed"); // Assuming this is the user feed page
+            // Navigate based on the typeOfUser
+            if (typeOfUser === "investor") {
+                navigate("/investorfeed");
+            } else if (typeOfUser === "user") {
+                navigate("/userfeed");
+            } else {
+                // Handle invalid typeOfUser
+            }
         } catch (error) {
             console.error("Error during login:", error);
             // Handle login error
@@ -32,7 +38,13 @@ export default function Login() {
         <div className="bg-cover bg-center h-screen flex flex-row" style={{backgroundImage: "url('signup.gif')"}}>
             <div className="w-1/2 h-full flex justify-center items-center flex-col">
                 <h1 className="text-4xl text-white font-primaryFont">Hello</h1>
-                <h1 className="text-2xl text-white font-primaryFont">Welcome Back!</h1>
+                <h1 className="text-2xl text-white font-primaryFont">Not a User? Create an Account Now!</h1>
+                <button onClick={(e)=>{
+                        e.preventDefault()
+                        navigate("/login")
+                    }} className="bg-bgPrimaryBg text-white font-primaryFont font-bold  text-lg rounded px-3 py-2 flex items-center hover:px-5 hover:shadow-lg transition-all duration-300 ease-in-out">
+                        Login Now!
+                        </button>
             </div>
             <div className="w-1/2 h-full flex justify-center items-center bg-white shadow-2xl rounded-2xl m-1">
                 <form onSubmit={onClickHandler}>

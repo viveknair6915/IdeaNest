@@ -10,6 +10,9 @@ const postSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    link: {
+        type: String
+    },
     description: {
         type: String
     },
