@@ -19,7 +19,7 @@ export default function RenderPosts() {
     }, []);
 
     const fetchPosts = () => {
-        axios.get(`http://localhost:3000/posts?limit=${limit}&skip=${skip}`)
+        axios.get(`http://localhost:3000/post/posts/cofounders?limit=${limit}&skip=${skip}`)
             .then((response) => {
                 setPosts((prevPosts) => [...prevPosts, ...response.data.posts]);
             })
@@ -27,7 +27,7 @@ export default function RenderPosts() {
                 console.error("Error:", error);
             });
     };
-
+ 
     const handleScroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
             setSkip((prevSkip) => prevSkip + limit);
@@ -71,10 +71,9 @@ export default function RenderPosts() {
     };
 
     return (
-        <div className="mt-5 flex justify-center items-center">
+        <div className="mt-5 flex justify-center items-center bg-bgblue ">
             <div className="w-96">
-                <button onClick={() => handleCreatePost(false)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Create Post without Media</button>
-                <button onClick={() => handleCreatePost(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Create Post with Media</button>
+             
                 {posts.map((post) => (
                     <div key={post._id} className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-4">
                         <div className="md:flex">
@@ -85,8 +84,18 @@ export default function RenderPosts() {
                                 <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{post.caption}</div>
                                 <p className="mt-2 text-gray-500">{post.description}</p>
                             </div>
+                            
+                        </div>
+                        <div className="flex flex-row justify-center items-center mx-5">
+                            <button className="bg-bgPrimary px-8 mx-4 rounded-xl">
+                                Contact
+                            </button>
+                            <button className="bg-bgPrimary px-8 rounded-xl">
+                                Like
+                            </button>
                         </div>
                     </div>
+                    
                 ))}
             </div>
         </div>
