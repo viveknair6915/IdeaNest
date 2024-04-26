@@ -6,7 +6,7 @@
   font-family: 'Poppins', sans-serif;
 }
 ::selection{
-  background: #34a1eb;
+  background: #666BED;
   color: #fff;
 }
 /* html,body{
@@ -32,7 +32,7 @@
   align-items: center;
   padding: 20px 30px;
   border-radius: 5px;
-  border:solid 2px #34a1eb;
+  border:solid 2px #666BED;
 }
 .box .quote i{
 margin-top: 10px;
@@ -43,7 +43,7 @@ color: #17c0eb
   margin: 10px 0;
   height: 150px;
   width: 150px;
-  background: #34a1eb;
+  background: #666BED;
   padding: 3px;
   border-radius: 50%;
 }
@@ -80,16 +80,16 @@ color: #17c0eb
   color:black;
 }
 .btns button{
-  background: #34a1eb;
+  background: #666BED;
   width: 100%;
   padding: 9px 0px;
   outline: none;
-  border: 2px solid #34a1eb;
+  border: 2px solid #666BED;
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
   font-weight: 400;
-  color: #34a1eb;
+  color: #666BED;
   transition: all 0.3s linear;
 }
 .btns button:first-child{
