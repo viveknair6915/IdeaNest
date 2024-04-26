@@ -23,15 +23,18 @@ const RoomPage = () => {
       audio: true,
       video: true,
     });
+
     const offer = await peer.getOffer();
+    console.log("The offer is: " + offer)
     socket.emit("user:call", { to: remoteSocketId, offer });
     setMyStream(stream);
     setFlag(1);
   }, [remoteSocketId, socket]);
 
-  const handleIncommingCall = useCallback(
-    async ({ from, offer }) => {
+  const handleIncommingCall = useCallback(async ({ from, offer }) => {
+    console.log("Handling Incoming Call")
       setRemoteSocketId(from);
+
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: true,
         video: true,
@@ -61,6 +64,7 @@ const RoomPage = () => {
   );
 
   const handleNegoNeeded = useCallback(async () => {
+    console.log("Handlig Nego Needed")
     const offer = await peer.getOffer();
     socket.emit("peer:nego:needed", { offer, to: remoteSocketId });
   }, [remoteSocketId, socket]);
