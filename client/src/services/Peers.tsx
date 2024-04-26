@@ -13,6 +13,7 @@ class PeerService {
       });
     }
   }
+  // ice server ko req bhejte just to get our public ip
 
   async getAnswer(offer) {
     if (this.peer) {
@@ -22,7 +23,7 @@ class PeerService {
       return ans;
     }
   }
-
+  
   async setLocalDescription(ans) {
     if (this.peer) {
       await this.peer.setRemoteDescription(new RTCSessionDescription(ans));

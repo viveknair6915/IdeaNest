@@ -4,10 +4,12 @@ import { useSocket } from "../context/SocketProvider";
 import '../style.css'
 
 const Lobby = () => {
+
   const [email, setEmail] = useState("");
   const [room, setRoom] = useState("");
 
   const socket = useSocket();
+  console.log(socket)
   const navigate = useNavigate();
 
   const handleSubmitForm = useCallback(
